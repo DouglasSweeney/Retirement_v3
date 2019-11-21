@@ -1,0 +1,13 @@
+Notes:
+    1) Display at 1366 x 768 (Ubuntu)
+    2) Developed under Java 8
+    3) Uses the GNU Lesser GPL (freeware); PDF is gnu license-2
+    4) Eclipse plugins
+       ===============
+       checkstyle
+       eclemma code coverage
+       pmd
+       spotbugs
+       metrics 2
+    5) External to eclipse
+       cpd - duplicates

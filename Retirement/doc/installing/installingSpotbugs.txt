@@ -1,0 +1,12 @@
+Install spotbugs (use to be findbugs)
+=====================================
+cd /opt
+sudo unzip spotbugs-3.1.3.zip
+cd /usr/share/ant/lib
+sudo ln -s /opt/spotbugs-3.1.3/lib/spotbugs-ant.jar spotbugs-ant.jar
+Create logs/spotbugs in eclipse project
+ant spotbugs
+Install PMD plugin
+	eclipse: Help->Eclipse Marketplace
+	search for "spotbugs"
+	Install "Spotbugs Eclipse plugin"

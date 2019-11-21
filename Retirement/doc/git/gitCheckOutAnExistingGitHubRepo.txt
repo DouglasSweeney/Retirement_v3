@@ -1,0 +1,32 @@
+Checking out an existing project: Git & Eclipse (8:13)
+    Author: DrBFraser       youtube.com
+
+Eclipse: Mars
+
+1) In GitHub (0:23)
+    Go to project sub-directory
+    Copy HTTP URL
+2) In Eclipse
+    Initially an empty Package Explorer
+    Import Git->Projects from Git
+    URI selected; Next button
+    Paste in URL from GitHub into URI (0:52)
+    Enter "User: " & "Password: " then Next
+    Import Projects from Git Window
+        Ensure "master" is selected then Next button (1:16)
+    Fill in Local Destination
+        Fill in Local Git Directory
+        Ensure initial branch is "master"
+        Ensure remote branch is origin
+        Next button
+    Select a wizard
+        Ensure "Import existing projects" is selected
+        Next button
+    Finish
+3) Open up Git Repositories" & Git Staging (2:05)
+4) Ensure that GitHub branch is master
+5) History displayed
+    Window->Show View->Other->Team->History
+6) Right click on project in Git Repositories view
+    Show In->History
+    

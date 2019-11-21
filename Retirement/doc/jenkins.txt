@@ -1,0 +1,9 @@
+
+1) To run (by hand) cobertura (line coverage) with junit
+        c) ant test
+        d) ant coverage-report
+
+        e) firefox logs/cobertura/html/index.html
+ 2) add SONAR (Code quality) // Don't do this
+    need mysql tho
+ 

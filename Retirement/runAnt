@@ -1,0 +1,1 @@
+ant -lib lib/log4j2 -lib lib/jcalendar -lib lib/jfreechart/jfreechart-1.0.19/lib -f build/ant/build.xml javadoc

@@ -1,0 +1,2 @@
+expand --tabs=2 $1 >temp.java
+cp temp.java $1

@@ -1,0 +1,9 @@
+1) Create new repo on GitHub.
+2) cd to local project
+3) Initialize the local directory; git init
+4) Add files; git add .
+5) Commit the files; git commit -m "Initial commit"
+6) Copy link in GitHub (project URL)
+7) git remote add origin [paste in Github project URL]
+   git remote -v
+8) Push files; git push origin master

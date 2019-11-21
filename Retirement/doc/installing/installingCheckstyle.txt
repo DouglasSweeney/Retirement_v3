@@ -1,0 +1,26 @@
+Installing checkstyle (Google coding conventions)
+=================================================
+Create lib/checkstyle in Eclipse project
+Create logs/checkstyle in Eclipse project
+copy build.xml in build/ant of Eclipse project
+copy google_checks.xml in build/ant of Eclipse project
+copy checkstyle.xml in build/ant of Eclipse project
+copy checkstyle-suppressions.xml in build/ant of Eclipse project
+copy checkstyle-noframes-severity-sorted.xsl into build/ant of Eclipse project
+copy ivysetting.xml into build/ant of Eclipse project
+copy ivy.xml into build/ant of Eclipse project
+copy ivysetting.xml into root of Eclipse project
+copy ivy.xml into root of Eclipse project 
+ant checkstyle
+copy <eclipse project>/lib/*.jar to <eclipse project>/lib/checkstyle
+ant checkstyle
+Install checkstyle plugin
+	eclipse: Help->Eclipse Marketplace
+	search for "checkstyle"
+	Install "Checkstyle Plug-in 8.12.0"
+	
+To see output
+=============
+Eclipse Project clean
+In the "Problems" Window is the output
+/* May have to click on type - only the first 100 are displayed */ 

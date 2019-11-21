@@ -1,0 +1,28 @@
+Installing PMD and CPD
+======================
+cd /opt
+sudo unzip pmd-bin-6.6.0.zip
+create logs/pmd
+create build/pmd
+	Copy ruleset.xml 
+Enable Eclipse PMD
+    Select project in "Package Explorer"
+    File->Properties->PMD
+    Select/Click "Enable PMD for this project"
+    "Add" a ruleset
+    	Use build/pmd/ruleset.xml
+Install PMD plugin
+	eclipse: Help->Eclipse Marketplace
+	search for "PMD"
+	Install "eclipse-pmd 1.12"
+	
+Installing CPD (Uses PMD)
+=========================
+create "cpd" in logs in eclipse project
+ant cpd 
+
+To see output
+=============
+Eclipse Project clean
+In the "Problems" Window is the output
+/* May have to click on type - only the first 100 are displayed */   		

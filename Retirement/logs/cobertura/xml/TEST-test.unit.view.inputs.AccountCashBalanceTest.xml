@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="dks-K53E" name="test.unit.view.inputs.AccountCashBalanceTest" skipped="0" tests="1" time="0.0" timestamp="2019-09-14T06:20:38">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="lib.dir" value="lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="checkstyle.dir" value="lib/checkstyle" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="os.name" value="Linux" />
+    <property name="reports.html.dir" value="logs/cobertura/html" />
+    <property name="junitlib.dir" value="lib/junit" />
+    <property name="sun.desktop" value="gnome" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="/usr/share/ant" />
+    <property name="net.sourceforge.cobertura.datafile" value="/home/dks/eclipse-workspace/Retirement/cobertura.ser" />
+    <property name="java.runtime.version" value="11.0.2+9-LTS" />
+    <property name="cobertura.dir" value="lib/cobertura/cobertura-2.1.1" />
+    <property name="user.name" value="dks" />
+    <property name="build.dir" value="build" />
+    <property name="reports.cpd" value="logs/cpd" />
+    <property name="user.language" value="en" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-oracle/lib" />
+    <property name="ivy.jar.dir" value="lib/checkstyle" />
+    <property name="ant.project.name" value="Retirement" />
+    <property name="java.vm.compressedOopsMode" value="32-bit" />
+    <property name="java.version" value="11.0.2" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="file.separator" value="/" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="55.0" />
+    <property name="classes.dir" value="build/classes" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="/usr/lib/jvm/java-11-oracle" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="/home/dks/eclipse-workspace/Retirement/build/ant/build.xml" />
+    <property name="os.version" value="4.15.0-62-generic" />
+    <property name="log4j2lib.dir" value="lib/log4j2" />
+    <property name="path.separator" value=":" />
+    <property name="java.vm.version" value="11.0.2+9-LTS" />
+    <property name="ant.library.dir" value="/usr/share/ant/lib" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="ant.file.Retirement" value="/home/dks/eclipse-workspace/Retirement/build/ant/build.xml" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+    <property name="ant.file.type.Retirement" value="file" />
+    <property name="reports.xml.dir" value="logs/cobertura/xml" />
+    <property name="user.home" value="/home/dks" />
+    <property name="java.version.date" value="2019-01-15" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.6 compiled on July 20 2018" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner testsfile=/home/dks/eclipse-workspace/Retirement/junittestcases14771164194430809330.properties skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/dks/eclipse-workspace/Retirement/logs/cobertura/xml/IGNORETHIS.xml crashfile=/home/dks/eclipse-workspace/Retirement/junitvmwatcher5004559058887433638.properties propsfile=/home/dks/eclipse-workspace/Retirement/junit9904802991857813966.properties" />
+    <property name="java.class.path" value="/home/dks/eclipse-workspace/Retirement/build/cobertura/instrumented:/home/dks/eclipse-workspace/Retirement/build/classes:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/cobertura-2.1.1-javadoc.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/cobertura-2.1.1-sources.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/cobertura-2.1.1.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/asm-5.0.3.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/asm-analysis-5.0.1.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/asm-commons-5.0.1.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/asm-tree-5.0.1.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/asm-util-5.0.1.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/commons-lang3-3.3.2.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/hamcrest-core-1.3.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/jaxen-1.1.4.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/jetty-6.1.14.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/jetty-util-6.1.14.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/junit-4.11.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/logback-classic-1.0.13.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/logback-core-1.0.13.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/oro-2.0.8.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/servlet-api-2.5-6.1.14.jar:/home/dks/eclipse-workspace/Retirement/lib/cobertura/cobertura-2.1.1/lib/slf4j-api-1.7.5.jar:/home/dks/eclipse-workspace/Retirement/lib/junit/junit-4.12.jar:/home/dks/eclipse-workspace/Retirement/lib/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.9.6.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar" />
+    <property name="ivy.install.version" value="2.1.0-rc2" />
+    <property name="jdk.debug" value="release" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="jars.dir" value="." />
+    <property name="java.vm.specification.version" value="11" />
+    <property name="base.dir" value="." />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/" />
+    <property name="reports.javadoc" value="logs/javadoc" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="instrumented.dir" value="build/cobertura/instrumented" />
+    <property name="jcalendar.dir" value="lib/jcalendar" />
+    <property name="user.dir" value="/home/dks/eclipse-workspace/Retirement" />
+    <property name="ivy.jar.file" value="lib/checkstyle/ivy.jar" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="/home/dks/eclipse-workspace/Retirement" />
+    <property name="ant.java.version" value="1.9" />
+    <property name="ant.core.lib" value="/usr/share/ant/lib/ant.jar" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="spotbugs.home" value="/opt/spotbugs-3.1.3/" />
+    <property name="reports.checkstyle" value="logs/checkstyle" />
+    <property name="java.specification.version" value="11" />
+    <property name="src.dir" value="src" />
+    <property name="java.vendor.version" value="18.9" />
+    <property name="ant.project.invoked-targets" value="test" />
+    <property name="jfreechart.dir" value="lib/jfreechart" />
+  </properties>
+  <error message="org/mockito/Mockito" type="java.lang.NoClassDefFoundError">java.lang.NoClassDefFoundError: org/mockito/Mockito
+	at test.unit.view.inputs.AccountCashBalanceTest.&lt;clinit&gt;(AccountCashBalanceTest.java:53)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:315)
+Caused by: java.lang.ClassNotFoundException: org.mockito.Mockito
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:583)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+</error>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

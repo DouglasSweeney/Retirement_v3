@@ -1,0 +1,22 @@
+Installing Eclipse
+==================
+Download eclipse installer
+cd
+cd Downloads
+sudo tar xzfv eclipse-inst-linux64.tar.gz
+cd eclipse-inst
+./eclipse-inst /* Installs user */
+
+To install the github zip project file
+======================================
+Eclipse: File->Import
+General->Existing Project
+Select the github zip file for the archive file
+
+To insert spaces and not TABS
+=============================
+Eclipse: Window->Preferences->General->Editors->Text Editor
+	Select "Insert spaces for tabs"
+Eclipse: Window->Preferences->Java->Code Style->Formatter
+	Create a new profile & "Edit"
+	 	Indentation->Tab Policy set to "Spaces only"

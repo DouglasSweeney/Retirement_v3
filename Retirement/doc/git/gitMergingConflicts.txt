@@ -1,0 +1,44 @@
+Remote Gt Server & Merging: Git & Eclipse (18:35)
+    Author: DrBFraser       youtube.com
+    
+    Eclipse: Mars
+    
+1) User 1 creates branch
+2) User 1 makes changes
+3) User 1 commits (locally)
+4) User 2 creates branch
+5) User 2 make changes
+6) User 2 commits (locally)
+7) User 2 Pushes to GitHub
+8) User 1 Pushes to GitHub
+    non fast forward
+    fetch changes icon
+        hash changes
+    Git Repositories window
+        Select Local master
+        Pull changes from upstream into current branch icon
+            Result: conflicting
+            Package Explorer icons go to red
+            Java file has both files (User 1 & User 2)
+9) Resolve differences
+    Git Staging view
+        Shows unstaged changes
+        Right click on file in Git Staging view
+            Select the Merge Tool
+                Select the workspace version of conflicting files
+                    Brings up User 1 & User 2 files (with diff annotations)
+                    Select a file to work on
+                        The one with the less changes usually
+                    Remove the diff annotations & lines not needed
+                    Save the file
+                    Drag file from Unstaged Changes to Staged changes
+                        or
+                        Right click & select Team->Add to index
+                    Commit button
+                    Push
+10) User 2 
+    Fetch changes/Pull changes
+    Delete branch
+11) User 1 
+    Delete branch
+    

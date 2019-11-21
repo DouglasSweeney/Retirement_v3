@@ -1,0 +1,42 @@
+To get systemback
+-----------------
+sudo add-apt-repository ppa:nemh/systemback
+sudo apt-get update
+sudo apt-get install systemback
+
+OR
+
+tar xvf Systemback_Install_Pack_v1.8.40.tar.xz
+cd systemback
+sudo ./install.sh
+
+To run systemback
+=================
+gksu systemback (May need to install gksu)
+
+To create a restore-point.tar.gz & users directory.tar.gz
+==================================================
+cd
+gksu systemback (Depress "New")
+cd /home/Systemback
+sudo tar cvf restore-point.tar dir-just-created/
+sudo gzip restore-point.tar
+cd /
+sudo tar cvf homedks.tar /home/dks (User "dks")
+sudo gzip homedks.tar
+sudo mv homedks.tar.gz /home/Systemback
+
+To copy restore-point.tar.gz & homedks.tar.gz to USB
+====================================================
+ENSURE THE USB filesytem is "ext4" and not dos
+	Run "Disks" from "Applications" (not from the terminal)
+cd  /home/Systemback
+sudo cp *.tar.gz /media/dks/'USB Label'/UsbPath    (for user dks)
+	
+To restore USB restore point
+============================
+Open the restore-point.tar.gz on the USB flash drive & get the directory name (it is a timestamp)
+cd /home/Systemback
+gksu systemback
+/* Select the restore point timestamp by clicking on the check box */
+Depress the "System Restore"

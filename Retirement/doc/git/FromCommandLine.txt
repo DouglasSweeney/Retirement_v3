@@ -1,0 +1,14 @@
+git config --global user.name "Douglas Sweeney"
+git config --global user.email "tomanyad9@gmail.com"
+
+cd <project> (i.e. demoRetirement)
+git init .
+git remote add origin git@github.com:DouglasSweeney/<new repo> #No README.md
+git@github.com:DouglasSweeney/demoRetirement.git
+# Remove large files (i.e. jars)
+git add *
+git commit -m "Initial commit"
+git push -u origin master
+
+# Add a README.md to repo at github.com
+git pull git@github.com:DouglasSweeney/demoRetirement.git

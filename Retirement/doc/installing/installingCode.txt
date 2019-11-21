@@ -1,0 +1,2 @@
+Need "pdftotext" executable to test the create PDF from application
+     Its freeware and avaiable on the internet.

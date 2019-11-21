@@ -1,0 +1,78 @@
+Creating a Repository: Git & Eclipse video length: (13:51)
+Author: DrBFraser       youtube.com
+
+Eclipse version: Mars 
+
+0.5) Need to fill in Git Configure items
+    Window menu bar Preferences->Team->Git->Configuration then "Add entry" button
+    Author: Key user.name  (Doug Sweeney)
+    E-mail: Key user.email (tomanyads9@gmail.com)
+1) Right Click on project: Team->Share Project to start tracking project under Eclipse locally.
+    "Configure Git Repository"
+        "Create" Button
+            "Create New Git Repository" page
+                "Repository Directory" filled in with path to local git repo &
+                    name to "Local" + project
+        "Finish" button
+2) Extra Eclipse Views
+    Window->Show views->Other
+        Git->Git Repositories & Git Staging
+        "OK" button
+        or
+    Select Project
+        Right click & click on Team->Show in repositories view
+3) Extra Eclipse View
+    Window->Show View->Other
+        Team->History
+4) To add Git Toolbar
+    Window->Custom Perspective
+        Action Set Availability
+        Check mark for Git
+        OK button
+4.5) Try creating a .gitignore before local commit
+    Highlight directory/file & Team->Ignore
+5) First commit
+    Package Explorer window: right click on project & "+" icon in Git toolbar
+        Then select commit icon in Git toolbar
+    Fill in commit message
+    Check "All" on bottom
+6) Verify first commit
+    Project icon changes
+7) Create a Github repo
+    Git Repositories->Remotes->Create -- Stay on first page
+    Goto Github.com & create a repo
+        No README
+        Copy HTTPS URL
+8) Eclipse->Git Repositories->Create window (about 8:00)
+    "New remote"in Git Repositories
+        Right click and "Create Remote"
+        Remote Name: "origin"
+        Select "configure push" -- OK button
+9) "Configure Push" window comes up
+    "Change" URL Button
+    Paste in HTTPS URL from GitHub
+    When entering Username and Password 
+        Check "Store in Secure Store" to remember password.
+    "Finish" button
+    "master" for master password
+10) "Advanced" button on ref mappings
+    "Source ref" - set to "refs/heads/master"
+    "Destination ref - set to "refs/heads/master
+    "Add Spec" button - shows up in "Specifications for push"
+    Check the check box for "Save specifications in 'origin' configuration
+    Click the "Finish" button
+    In the "Configure Push" window
+        "ref mappings"
+         Click the "Save" button.
+11) In the "Git Repositories" window
+        "Remotes->origin"
+            Two (2) URLs filled in; Push & Pull
+        Right click on Red arrow (push) URL
+            Select "Push" (takes time)
+            Confirmation dialog comes up.
+12) Goto GitHub and check the repo is there. (F5 causes a refresh)
+13) Modify a file in Eclipse.
+    Add the change to the local Git repo ("+" icon)
+    Commit the change to the local repo (Commit icon)
+    Push the change to the upstream GitHub repo
+14) Go to GitHub (F5 to refresh) & ensure the change made it up

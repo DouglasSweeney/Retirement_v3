@@ -1,0 +1,11 @@
+mvn --version
+
+// To create a project - creates a basic pom.xml
+
+// Need to fill in com.company.app (directories after src/main/java)
+// Need to fill in my-app (i.e. Retirement)
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app 
+-DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 
+-DinteractiveMode=false
+
+

@@ -1,0 +1,941 @@
+Found a 52 line (263 tokens) duplication in the following files: 
+Starting at line 262 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Deductions.java
+Starting at line 261 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Expenses.java
+Starting at line 267 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Salary.java
+
+      LOGGER.error("Received an error in Deductions writePdf()");
+    }
+    
+    if (getList() == null) {
+    	returnValue = false;
+    }
+    else {
+     	returnValue = PDF_UTILS.isAnotherPageRequired(getList().size(), CreatePdf.LIST_SIZE_PER_PAGE);
+    }
+    
+    return returnValue;
+  }
+
+  /** 
+   * Print out the Pdf second page of the output object (if required).
+   * 
+   * @since  1.0
+   * 
+   * @return void // Printout the second page of the report
+   */
+  public void writePdf2(final PDDocument doc) {
+    final CreatePdf createPdf = new CreatePdf();
+    Integer yLocation = CreatePdf.LIST_LINE_POSITION; 
+    
+    if (getList().size() > CreatePdf.LIST_SIZE_PER_PAGE) {
+      final PDPage page2 = new PDPage();
+        
+      doc.addPage(page2);
+             
+      try (PDPageContentStream contents2 = new PDPageContentStream(doc, page2)) {
+  
+        // Print out the header for the output text area values
+        final String str2 = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS,  
+            "Year", 
+            "Age", 
+            "Beginning Balance",
+            "Ending Balance");
+        createPdf.outputString(contents2, str2, CreatePdf.HEADER_LINE_POSITION);
+        // Print out the data in the output text area
+        for (int i=CreatePdf.LIST_SIZE_PER_PAGE+1; i < getList().size(); i++) {
+          final ResultsDataNode node = getList().get(i);
+          final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS, 
+              node.getYear(),
+              node.getAge(), 
+              createPdf.leftPad(UTILS.getDollarFormat(node.getBeginningValue()), CreatePdf.LEN),
+              createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+           createPdf.outputString(contents2, string, yLocation);
+
+           yLocation -= CreatePdf.LINE_HEIGHT;
+         } 
+      } catch (IOException e) {
+        LOGGER.error("Received an error in Deductions writePdf2()");
+=====================================================================
+Found a 57 line (249 tokens) duplication in the following files: 
+Starting at line 206 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Deductions.java
+Starting at line 205 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Expenses.java
+
+    LOGGER.trace("Leaving the Deductions clear().");
+  }
+  
+  /** 
+   * Retrieve the JTextArea.
+   * 
+   * @since  1.0
+   * 
+   * @return The list of values 
+   */
+  public JTextArea getTextArea() {
+    return textArea;
+  }
+  
+  /** 
+   * Print out the Pdf first page of the output object.
+   * 
+   * @since  1.0
+   * 
+   * @return An indication that another page is required. 
+   */
+  public boolean writePdf(final PDDocument doc) {
+    final CreatePdf createPdf = new CreatePdf();
+    Integer yLocation = CreatePdf.LIST_LINE_POSITION; 
+    final PDPage page = new PDPage();   
+    boolean returnValue;
+    
+    doc.addPage(page);
+           
+    try (PDPageContentStream contents = new PDPageContentStream(doc, page)) {
+      createPdf.outputHeader(contents, getName());
+ 
+      // Print out the header for the output text area values
+      final String str = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS,  
+          "Year", 
+          "Age", 
+          "Beginning Balance",
+          "Ending Balance");
+      createPdf.outputString(contents, str, CreatePdf.HEADER_LINE_POSITION);
+
+      if (getList() != null ) {
+    	  // Print out the data in the output text area (page 1 - possibly 2)
+    	  for (int i=0; i <= CreatePdf.LIST_SIZE_PER_PAGE && i < getList().size(); i++) {
+    		  final ResultsDataNode node = getList().get(i);
+    		  final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS, 
+    				  node.getYear(),
+    				  node.getAge(), 
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getBeginningValue()), CreatePdf.LEN),
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+    		  createPdf.outputString(contents, string, yLocation);
+
+    		  yLocation -= CreatePdf.LINE_HEIGHT;
+    	  }
+    	  contents.close();
+      }
+    } catch (IOException e) {
+      LOGGER.error("Received an error in Deductions writePdf()");
+=====================================================================
+Found a 44 line (198 tokens) duplication in the following files: 
+Starting at line 266 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Pension.java
+Starting at line 238 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/SocialSecurity.java
+
+      LOGGER.error("Received an error in Pension writePdf()");
+    }
+    
+    if (getList() == null) {
+    	returnValue = false;
+    }
+    else {
+    	returnValue = PDF_UTILS.isAnotherPageRequired(getList().size(), CreatePdf.LIST_SIZE_PER_PAGE);
+    }
+
+    return returnValue;
+  }
+
+  /** 
+   * Print out the Pdf second page of the output object (if required).
+   * 
+   * @since  1.0
+   * 
+   * @return void // Printout the second page of the report
+   */
+  public void writePdf2(final PDDocument doc) {
+    final CreatePdf createPdf = new CreatePdf();
+    Integer yLocation = CreatePdf.LIST_LINE_POSITION; 
+    
+    if (getList().size() > CreatePdf.LIST_SIZE_PER_PAGE) {
+      final PDPage page2 = new PDPage();
+        
+      doc.addPage(page2);
+             
+      try (PDPageContentStream contents2 = new PDPageContentStream(doc, page2)) {
+  
+        // Print out the header for the output text area values
+        final String str2 = String.format(CreatePdf.FORMAT_YEAR_AGE_ONE_DOLLAR_AMOUNTS,  
+            "Year", 
+            "Age", 
+            "Annual Amount");
+        createPdf.outputString(contents2, str2, CreatePdf.HEADER_LINE_POSITION);
+        // Print out the data in the output text area
+        for (int i=CreatePdf.LIST_SIZE_PER_PAGE+1; i < getList().size(); i++) {
+          final ResultsDataNode node = getList().get(i);
+          final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_ONE_DOLLAR_AMOUNTS, 
+              node.getYear(),
+              node.getAge(), 
+              createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+=====================================================================
+Found a 26 line (188 tokens) duplication in the following files: 
+Starting at line 233 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Deductions.java
+Starting at line 232 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Expenses.java
+Starting at line 238 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Salary.java
+
+    doc.addPage(page);
+           
+    try (PDPageContentStream contents = new PDPageContentStream(doc, page)) {
+      createPdf.outputHeader(contents, getName());
+ 
+      // Print out the header for the output text area values
+      final String str = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS,  
+          "Year", 
+          "Age", 
+          "Beginning Balance",
+          "Ending Balance");
+      createPdf.outputString(contents, str, CreatePdf.HEADER_LINE_POSITION);
+
+      if (getList() != null ) {
+    	  // Print out the data in the output text area (page 1 - possibly 2)
+    	  for (int i=0; i <= CreatePdf.LIST_SIZE_PER_PAGE && i < getList().size(); i++) {
+    		  final ResultsDataNode node = getList().get(i);
+    		  final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS, 
+    				  node.getYear(),
+    				  node.getAge(), 
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getBeginningValue()), CreatePdf.LEN),
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+    		  createPdf.outputString(contents, string, yLocation);
+
+    		  yLocation -= CreatePdf.LINE_HEIGHT;
+    	  }
+=====================================================================
+Found a 46 line (182 tokens) duplication in the following files: 
+Starting at line 81 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountCashBalance.java
+Starting at line 81 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountIra.java
+
+  public AccountCashBalance(final double balance, final double growthRate, 
+                            final double annualContribution, final int currentAge, 
+                            final int currentYear, final int retirementAge, 
+                            final int deathAge, final int startWithdrawalsAge, 
+                            final int numberOfWithdrawals, final Salary salary, 
+                            final boolean onlyWhileSalary) {
+    super();
+    
+    int year;
+    
+    this.balance = balance;
+    this.growthRate = growthRate;
+    this.annualContribution = annualContribution;
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+  }
+
+   
+  /**
+   * Get the balance.
+   * 
+   *  @return the balance
+   */
+  public double getBalance() {
+=====================================================================
+Found a 46 line (178 tokens) duplication in the following files: 
+Starting at line 213 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Pension.java
+Starting at line 185 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/SocialSecurity.java
+
+    LOGGER.trace("Leaving the Pension clear().");
+  }
+    
+  /** 
+   * Retrieve the JTextArea.
+   * 
+   * @since  1.0
+   * 
+   * @return The list of values 
+   */
+  public JTextArea getTextArea() {
+    return textArea;
+  }
+  
+  /** 
+   * Print out the Pdf first page of the output object.
+   * 
+   * @since  1.0
+   * 
+   * @return An indication that another page is required. 
+   */
+  public boolean writePdf(final PDDocument doc) {
+    final CreatePdf createPdf = new CreatePdf();
+    Integer yLocation = CreatePdf.LIST_LINE_POSITION; 
+    boolean returnValue;
+    final PDPage page = new PDPage();      
+    doc.addPage(page);
+           
+    try (PDPageContentStream contents = new PDPageContentStream(doc, page)) {
+      createPdf.outputHeader(contents, getName());
+ 
+      // Print out the header for the output text area values
+      final String str = String.format(CreatePdf.FORMAT_YEAR_AGE_ONE_DOLLAR_AMOUNTS,  
+          "Year", 
+          "Age", 
+          "Annual Amount");
+      createPdf.outputString(contents, str, CreatePdf.HEADER_LINE_POSITION);
+
+      if (getList() != null) {
+    	  // Print out the data in the output text area (page 1 - possibly 2)
+    	  for (int i=0; i <= CreatePdf.LIST_SIZE_PER_PAGE && i < getList().size(); i++) {
+    		  final ResultsDataNode node = getList().get(i);
+    		  final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_ONE_DOLLAR_AMOUNTS, 
+    				  node.getYear(),
+    				  node.getAge(), 
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+=====================================================================
+Found a 35 line (175 tokens) duplication in the following files: 
+Starting at line 85 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account401K.java
+Starting at line 74 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountRoth.java
+
+  public Account401K(final double balance, final double growthRate, 
+                     final double annualContribution, final int currentAge, 
+                     final int currentYear, final int retirementAge, final int deathAge,
+                     final int startWithdrawalsAge, final int numberOfWithdrawals,
+                     final Salary salary, final boolean onlyWhileSalary) {
+    super();
+    
+    int year;
+    
+    this.balance = balance;
+    this.growthRate = growthRate;
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+=====================================================================
+Found a 54 line (147 tokens) duplication in the following files: 
+Starting at line 29 of /home/dks/eclipse-workspace/Retirement/src/application/model/Brokerage.java
+Starting at line 29 of /home/dks/eclipse-workspace/Retirement/src/application/model/SavingsModel.java
+
+  public Brokerage(final double balance, final double growthRate, 
+                   final int currentAge, final int currentYear, 
+                   final int deathAge) {
+    super();
+    
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);        
+  }
+  
+  /**
+   * Deposit an amount and recompute the balance.
+   * 
+   * @param currentAge    The age of the person at the deposit year
+   * @param depositAmount The amount of the deposit 
+   */
+  public void deposit(final int currentAge, final double depositAmount) {
+    recomputeGrowthWithDeposit(currentAge, depositAmount);
+  }
+    
+  /**
+   * Withdraw an amount and recompute the balance.
+   * 
+   * @param currentAge       The age of the person at the withdrawal year
+   * @param withdrawalAmount The amount of the withdrawal 
+   *
+   * @return Actual withdrawal amount
+   */
+  public double withdraw(final int currentAge, final double withdrawalAmount) {
+    final int currentYear = convertAgeToYear(currentAge);
+    double value;
+    double amount;
+    final double beginningValue = getBeginningValue(currentYear);
+    final double deposits = getDeposits(currentYear);
+    final double withdrawals = getWithdrawals(currentYear);
+        
+    value = beginningValue + deposits - withdrawals;
+        
+    if (withdrawalAmount <= value) {
+      amount = withdrawalAmount; 
+    } else {
+      amount = value;
+    }
+
+    recomputeGrowthWithWithdrawal(currentAge, amount);
+
+    return amount;
+  }
+    
+  /**
+   * Get the taxability of this account.
+   *
+   * @return boolean
+   */
+  public boolean isTaxable() {
+    return false;
+=====================================================================
+Found a 60 line (146 tokens) duplication in the following files: 
+Starting at line 93 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account403B.java
+Starting at line 93 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountIra.java
+
+    this.annualContributions = annualContribution;
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+  }
+
+  /**
+   * Returns the taxable status of the account.
+   *
+   * @return true
+   */
+  public boolean isTaxable() {
+    return true;
+  }
+    
+  /**
+   * Get the balance.
+   * 
+   * @return the balance
+   */
+  public double getBalance() {
+    return balance;
+  }
+
+  /**
+   * Get the expected growth rate.
+   * 
+   * @return the growthRate
+   */
+  public double getGrowthRate() {
+    return growthRate;
+  }
+
+  /**
+   * Get the expected annual contributions.
+   * 
+   * @return the annual contribution
+   */
+  public double getAnnualContributions() {
+=====================================================================
+Found a 20 line (142 tokens) duplication in the following files: 
+Starting at line 159 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Brokerage.java
+Starting at line 197 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Savings.java
+
+    LOGGER.trace("Entering the Brokerage createPanel() with no parameters.");
+
+    final JPanel jPanel = new JPanel(new GridLayout(2, 2));
+
+    JLabel label = new JLabel(Entry.CURRENT_BALANCE.toString());
+    jPanel.add(label);
+    balance = new JFormattedTextField();
+    balance.setText(UTILS.getDollarFormat(xmlReader.getDoubleProperty(BALANCE_PROPERTY)));
+    balance.setName(UTILS.getCurrencyName());
+    balance.setInputVerifier(VERIFIER);
+    balance.addFocusListener(FOCUS);
+    jPanel.add(balance);
+
+    label = new JLabel(Entry.ANNUAL_GROWTH_RATE.toString());
+    jPanel.add(label);
+    growthRate = new ComboBoxList(ComboBoxItems.ITEMS.ITEMS_1_TO_30_BY_ZERO_POINT_FIVE,
+        UTILS.getPercentFormat(xmlReader.getDoubleProperty(GROWTH_RATE_PROPERTY)));
+    jPanel.add(growthRate.getComboBox());
+
+    LOGGER.trace("Leaving the Brokerage createPanel().");
+=====================================================================
+Found a 10 line (128 tokens) duplication in the following files: 
+Starting at line 106 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/OutputObject.java
+Starting at line 164 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/OutputObject.java
+
+    	  for (int i=0; i <= CreatePdf.LIST_SIZE_PER_PAGE && i < values.size(); i++) {
+    		  final ResultsDataNode node = getList().get(i);
+    		  final String string = String.format(CreatePdf.FORMAT_YEAR_AGE_FOUR_DOLLAR_AMOUNTS, 
+    				  node.getYear(),
+    				  node.getAge(), 
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getBeginningValue()), CreatePdf.LEN),
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getDeposit()), CreatePdf.LEN),
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getWithdrawal()), CreatePdf.LEN),
+    				  createPdf.leftPad(UTILS.getDollarFormat(node.getEndingValue()), CreatePdf.LEN));
+    		  createPdf.outputString(contents, string, yLocation);
+=====================================================================
+Found a 16 line (126 tokens) duplication in the following files: 
+Starting at line 134 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Account.java
+Starting at line 161 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Brokerage.java
+Starting at line 199 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Savings.java
+
+    final JPanel jPanel = new JPanel(new GridLayout(6, 2));
+         
+    JLabel label = new JLabel(Entry.CURRENT_BALANCE.toString());
+    jPanel.add(label);
+    balance = new JFormattedTextField();
+    balance.setText(UTILS.getDollarFormat(xmlReader.getDoubleProperty(BALANCE_PROPERTY)));
+    balance.setName(UTILS.getCurrencyName());
+    balance.setInputVerifier(VERIFIER);
+    balance.addFocusListener(FOCUS);
+    jPanel.add(balance);
+  
+    label = new JLabel(Entry.ANNUAL_GROWTH_RATE.toString());
+    jPanel.add(label);
+    growthRate = new ComboBoxList(ComboBoxItems.ITEMS.ITEMS_1_TO_30_BY_ZERO_POINT_FIVE,
+        UTILS.getPercentFormat(xmlReader.getDoubleProperty(GROWTH_RATE_PROPERTY)));
+    jPanel.add(growthRate.getComboBox());
+=====================================================================
+Found a 15 line (126 tokens) duplication in the following files: 
+Starting at line 177 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Pension.java
+Starting at line 156 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/SocialSecurity.java
+
+    final JPanel jPanel = new JPanel(new GridLayout(3, 2));
+
+    JLabel label = new JLabel(Entry.STARTING_AGE.toString());
+    jPanel.add(label);
+    startAge = new ComboBoxList(ComboBoxItems.ITEMS.ITEMS_1_TO_95, UTILS.getWholeIntegerFormat(xmlReader.getIntegerProperty(START_AGE_PROPERTY)));
+    jPanel.add(startAge.getComboBox());
+
+    label = new JLabel(Entry.MONTHLY_AMOUNT.toString());
+    jPanel.add(label);
+    monthlyAmount = new JFormattedTextField();
+    monthlyAmount.setText(UTILS.getDollarFormat(xmlReader.getDoubleProperty(MONTHLY_AMOUNT_PROPERTY)));
+    monthlyAmount.setName(UTILS.getCurrencyName());
+    monthlyAmount.setInputVerifier(VERIFIER);
+    monthlyAmount.addFocusListener(FOCUS);
+    jPanel.add(monthlyAmount);
+=====================================================================
+Found a 33 line (124 tokens) duplication in the following files: 
+Starting at line 3 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Header.java
+Starting at line 3 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Header.java
+
+public enum Header {
+    ACCOUNT_401K {
+      @Override
+      public String toString() {return "401K"; }
+    },
+    ACCOUNT_403B {
+      @Override
+      public String toString() {return "403B"; }
+    },
+    BROKERAGE {
+      @Override
+      public String toString() {return "Brokerage"; }
+    },
+    CASH_BALANCE {
+      @Override	
+      public String toString() {return "Cash Balance"; }
+    },
+    DEDUCTIONS {
+      @Override
+      public String toString() {return "Deductions"; }
+    },
+    EXPENSES {
+      @Override
+      public String toString() {return "Expenses"; }
+    },    
+    IRA {
+      @Override
+      public String toString() {return "IRA"; }
+    },
+    PENSION {
+      @Override
+      public String toString() {return "Pension"; }
+    },
+=====================================================================
+Found a 9 line (123 tokens) duplication in the following files: 
+Starting at line 7 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/ComboBoxItems.java
+Starting at line 45 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/ComboBoxItems.java
+
+  private transient final String[] items1To30ByZeroPointFive = { "0.0%", "0.5%",
+       "1.0%",  "1.5%",  "2.0%",  "2.5%",  "3.0%",  "3.5%",  "4.0%",  "4.5%", 
+       "5.0%",  "5.5%",  "6.0%",  "6.5%",  "7.0%",  "7.5%",  "8.0%",  "8.5%",
+       "9.0%",  "9.5%", "10.0%", "10.5%", "11.0%", "11.5%", "12.0%", "12.5%",
+      "13.0%", "13.5%", "14.0%", "14.5%", "15.0%", "15.5%", "16.0%", "16.5%",
+      "17.0%", "17.5%", "18.0%", "18.5%", "19.0%", "19.5%", "20.0%", "20.5%",
+      "21.0%", "21.5%", "22.0%", "22.5%", "23.0%", "23.5%", "24.0%", "24.5%",
+      "25.0%", "25.5%", "26.0%", "26.5%", "27.0%", "27.5%", "28.0%", "28.5%",
+      "29.0%", "29.5%", "30.0%"
+=====================================================================
+Found a 33 line (122 tokens) duplication in the following files: 
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account403B.java
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountIra.java
+Starting at line 86 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountRoth.java
+
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+  }
+
+  /**
+   * Returns the taxable status of the account.
+   *
+   * @return true
+   */
+  public boolean isTaxable() {
+    return true;
+=====================================================================
+Found a 33 line (118 tokens) duplication in the following files: 
+Starting at line 93 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account403B.java
+Starting at line 93 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountCashBalance.java
+
+    this.annualContributions = annualContribution;
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+  }
+
+  /**
+   * Returns the taxable status of the account.
+   *
+   * @return true
+   */
+  public boolean isTaxable() {
+=====================================================================
+Found a 44 line (118 tokens) duplication in the following files: 
+Starting at line 332 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Pension.java
+Starting at line 266 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/SocialSecurity.java
+
+    execute.runSimulation(Focus.getInputsTabbedPane(), Focus.getResultsTabbedPane());
+  }
+
+  /**
+   * The below methods are needed for testing only; not used in the application
+   */
+  
+   /** 
+   * Verify the user input.
+   * 
+   * @since  1.0
+   * @return double
+   */
+  public void setMonthlyAmount(final String input) {
+    LOGGER.trace("Entering the Pension setMonthlyAmount() with input parameter.");
+    
+    monthlyAmount.setText(input);
+    final InputVerifier verifier = monthlyAmount.getInputVerifier();
+    verifier.verify(monthlyAmount);
+  }
+  
+  /** 
+   * Check the user input for a focus listener.
+   * 
+   * @since  1.0
+   * @return double
+   */
+  public boolean monthlyAmountHasFocusListener() {
+    LOGGER.trace("Entering the Pension monthlyAmountHasFocusListener() with no parameters.");
+    
+    boolean hasFocusListener = false;
+    
+    final FocusListener[] focusListeners = monthlyAmount.getFocusListeners();
+    if (focusListeners.length == NUMBER_OF_FOCUS_LISTENERS) { // 2 standard focus listerns + ours
+      hasFocusListener = true;
+    }
+ 
+    return hasFocusListener;
+  }
+  
+  public void writePdf(final String name, final PDDocument doc) {
+
+	  writePdf(doc, Entry.MONTHLY_AMOUNT.toString(), UTILS.getDollarFormat(getMonthlyAmount()),
+			        Entry.START_WITHDRAWL_AGE.toString(), UTILS.getIntegerFormat(getStartAge()),
+=====================================================================
+Found a 33 line (116 tokens) duplication in the following files: 
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountCashBalance.java
+Starting at line 86 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountRoth.java
+
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+  }
+
+   
+  /**
+   * Get the balance.
+   * 
+   *  @return the balance
+   */
+  public double getBalance() {
+=====================================================================
+Found a 33 line (115 tokens) duplication in the following files: 
+Starting at line 262 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Deductions.java
+Starting at line 261 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Expenses.java
+Starting at line 266 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Pension.java
+Starting at line 267 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Salary.java
+Starting at line 238 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/SocialSecurity.java
+Starting at line 249 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Taxes.java
+
+      LOGGER.error("Received an error in Deductions writePdf()");
+    }
+    
+    if (getList() == null) {
+    	returnValue = false;
+    }
+    else {
+     	returnValue = PDF_UTILS.isAnotherPageRequired(getList().size(), CreatePdf.LIST_SIZE_PER_PAGE);
+    }
+    
+    return returnValue;
+  }
+
+  /** 
+   * Print out the Pdf second page of the output object (if required).
+   * 
+   * @since  1.0
+   * 
+   * @return void // Printout the second page of the report
+   */
+  public void writePdf2(final PDDocument doc) {
+    final CreatePdf createPdf = new CreatePdf();
+    Integer yLocation = CreatePdf.LIST_LINE_POSITION; 
+    
+    if (getList().size() > CreatePdf.LIST_SIZE_PER_PAGE) {
+      final PDPage page2 = new PDPage();
+        
+      doc.addPage(page2);
+             
+      try (PDPageContentStream contents2 = new PDPageContentStream(doc, page2)) {
+  
+        // Print out the header for the output text area values
+        final String str2 = String.format(CreatePdf.FORMAT_YEAR_AGE_TWO_DOLLAR_AMOUNTS,  
+=====================================================================
+Found a 24 line (114 tokens) duplication in the following files: 
+Starting at line 96 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account401K.java
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/Account403B.java
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountCashBalance.java
+Starting at line 94 of /home/dks/eclipse-workspace/Retirement/src/application/model/AccountIra.java
+
+    this.currentAge = currentAge;
+    this.currentYear = currentYear;
+    this.deathAge = deathAge;
+    this.startWithdrawalsAge = startWithdrawalsAge;
+    this.numberOfWithdrawals = numberOfWithdrawals;
+        
+    initialize(balance, growthRate, currentAge, currentYear, deathAge);
+        
+    // Add in the annual contributions
+    for (int age = currentAge; age < deathAge; age++) {
+      year = salary.convertAgeToYear(age);
+      if (onlyWhileSalary && salary.getEndingValue(year) > 0.0) {
+        recomputeGrowthWithDeposit(age, annualContribution);
+      } else {
+        if (!onlyWhileSalary) {
+          recomputeGrowthWithDeposit(age, annualContribution);
+        }
+      }
+    }
+                
+    // Compute the withdrawals
+    if (numberOfWithdrawals > 0) {
+      computePeriodicWithdrawals(currentAge, growthRate, startWithdrawalsAge, numberOfWithdrawals);
+    }
+=====================================================================
+Found a 31 line (108 tokens) duplication in the following files: 
+Starting at line 178 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Income.java
+Starting at line 155 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Saving.java
+
+      final Expenses expenses) {
+
+    final StandardCategoryItemLabelGenerator standardcategoryitemlabelgenerator = 
+        new StandardCategoryItemLabelGenerator();
+
+    final BarRenderer barrenderer = new StackedBarRenderer();
+
+    barrenderer.setBaseItemLabelGenerator(standardcategoryitemlabelgenerator);
+
+    barrenderer.setBaseItemLabelsVisible(true);
+
+    final CategoryPlot categoryplot = new CategoryPlot();
+
+    categoryplot.setDataset(dataset);
+
+    categoryplot.setRenderer(barrenderer);
+
+    categoryplot.setDomainAxis(new CategoryAxis("Age"));
+        
+    categoryplot.setRangeAxis(new NumberAxis(" "));
+
+    categoryplot.setOrientation(PlotOrientation.VERTICAL);
+
+    categoryplot.setRangeGridlinesVisible(true);
+
+    categoryplot.setDomainGridlinesVisible(true);
+        
+    final DefaultCategoryDataset defaultcategorydataset1 = new DefaultCategoryDataset();
+    final LineAndShapeRenderer lineandshaperenderer = new LineAndShapeRenderer();
+
+    categoryplot.setDataset(1, defaultcategorydataset1);
+=====================================================================
+Found a 17 line (105 tokens) duplication in the following files: 
+Starting at line 225 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Income.java
+Starting at line 173 of /home/dks/eclipse-workspace/Retirement/src/application/view/outputs/Saving.java
+
+    categoryplot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD);
+
+    categoryplot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.UP_45);       
+        
+    // Display odd labels - to many looks crowded
+    final CategoryAxis domainAxis = categoryplot.getDomainAxis();
+    
+    final int size = ages.size() / 10;
+    for (int i = 0; i < ages.size(); i++) {
+      if (i % size > 0) {
+        domainAxis.setTickLabelPaint(ages.get(i), Main.getDefaultColor());
+      }
+    }
+
+    final NumberFormat currency = NumberFormat.getCurrencyInstance();
+    final NumberAxis rangeAxis = (NumberAxis) categoryplot.getRangeAxis();
+    rangeAxis.setNumberFormatOverride(currency);
+=====================================================================
+Found a 29 line (104 tokens) duplication in the following files: 
+Starting at line 304 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Brokerage.java
+Starting at line 342 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/Savings.java
+
+    LOGGER.trace("Entering the Account401K setGrowthRate() with input parameter.");
+    
+    growthRate.setValue(input);
+  }
+  
+  /** 
+   * Check the user input for a focus listener.
+   * 
+   * @since  1.0
+   * @return double
+   */
+  public boolean balanceHasFocusListener() {
+    LOGGER.trace("Entering the Account401K setBalance2() with no parameters.");
+    
+    boolean hasFocusListener = false;
+    
+    final FocusListener[] focusListeners = balance.getFocusListeners();
+    if (focusListeners.length == NUMBER_OF_FOCUS_LISTENERS) { // 2 standard focus listerns + ours
+      hasFocusListener = true;
+    }
+ 
+    return hasFocusListener;
+  }
+  
+  public void writePdf(final String name, final PDDocument doc) {
+	  writePdf(doc, Entry.CURRENT_BALANCE.toString(), UTILS.getDollarFormat(getBalance()),
+	                Entry.ANNUAL_GROWTH_RATE.toString(), UTILS.getPercentFormat(getGrowthRate()));
+  }
+}
+=====================================================================
+Found a 7 line (103 tokens) duplication in the following files: 
+Starting at line 18 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/ComboBoxItems.java
+Starting at line 32 of /home/dks/eclipse-workspace/Retirement/src/application/view/inputs/ComboBoxItems.java
+
+  private transient final String[] items1To95 = 
+    { "0",
+      "1",   "2",  "3",  "4",  "5",  "6",  "7",  "8",  "9", "10",
+      "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+      "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+      "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
+      "41", "42", "43", "44", "45", "46", "47", "48", "49", "50",

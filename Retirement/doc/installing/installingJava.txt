@@ -1,0 +1,31 @@
+Install default java (Java 8 when this was written) & latest firefox
+====================================================================
+sudo apt-get update
+sudo apt-get install firefox
+sudo apt-get install default-jdk
+    /* Creates /usr/lib/jvm */
+    
+To install Java 10 (at this writing)
+====================================
+sudo apt-get purge oracle-java10-installer /* May get an error the first time; java 10 doesn't exist */
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo apt install oracle-java10-installer /* Downloads java 10 jdk */
+sudo apt install oracle-java10-set-default
+
+To install Java 11
+==================
+sudo apt-get install openjdk-11-jdk // get java 11
+oracle-java11-set-default
+
+OR
+
+Download java11.tar.gz from oracle to ~/Downloads
+sudo mkdir -p var/cache/oracle-jdk11=installer-local
+sudo cp jdk-11.0.5.......tar.gz var/cache/oracle-jdk11=installer-local  
+sudo apt purge oracle-java11-installer
+
+To select a java that is installed on the machine
+=================================================
+sudo update-java-alternatives --list
+sudo update-java-alternatives --set [from prev cmd on the left column] /* May get an mozilla error */ 

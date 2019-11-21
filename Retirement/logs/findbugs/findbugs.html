@@ -1,0 +1,1814 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>FindBugs Report</title>
+        <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+        <script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+    </head>
+    <body>
+        <h1>
+            <a href="http://findbugs.sourceforge.net">FindBugs</a>
+             Report
+        </h1>
+        <h2>Project Information</h2>
+        <p>Project: 
+		</p>
+        <p>FindBugs version: 3.0.1</p>
+        <p>Code analyzed:</p>
+        <ul>
+            <li>/home/dks/eclipse-workspace/Retirement/Retirement.jar</li>
+        </ul>
+        <p>
+            <br />
+            <br />
+        </p>
+        <h2>Metrics</h2>
+        <p>139902 lines of code analyzed,
+	in 2118 classes, 
+	in 136 packages.</p>
+        <table width="500" cellpadding="5" cellspacing="2">
+            <tr class="tableheader">
+                <th align="left">Metric</th>
+                <th align="right">Total</th>
+                <th align="right">Density*</th>
+            </tr>
+            <tr class="tablerow0">
+                <td>High Priority Warnings</td>
+                <td align="right">64</td>
+                <td align="right">0.46</td>
+            </tr>
+            <tr class="tablerow1">
+                <td>Medium Priority Warnings</td>
+                <td align="right" />
+                <td align="right">0.00</td>
+            </tr>
+            <tr class="$totalClass">
+                <td>
+                    <b>Total Warnings</b>
+                </td>
+                <td align="right">
+                    <b>64</b>
+                </td>
+                <td align="right">
+                    <b>0.46</b>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+        </p>
+        <p>
+            <br />
+            <br />
+        </p>
+        <h2>Contents</h2>
+        <ul>
+            <li>
+                <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_I18N">Internationalization Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+            </li>
+            <li>
+                <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </li>
+            <li>
+                <a href="#Details">Details</a>
+            </li>
+        </ul>
+        <h1>Summary</h1>
+        <table width="500" cellpadding="5" cellspacing="2">
+            <tr class="tableheader">
+                <th align="left">Warning Type</th>
+                <th align="right">Number</th>
+            </tr>
+            <tr class="tablerow0">
+                <td>
+                    <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+                </td>
+                <td align="right">7</td>
+            </tr>
+            <tr class="tablerow1">
+                <td>
+                    <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+                </td>
+                <td align="right">2</td>
+            </tr>
+            <tr class="tablerow0">
+                <td>
+                    <a href="#Warnings_I18N">Internationalization Warnings</a>
+                </td>
+                <td align="right">8</td>
+            </tr>
+            <tr class="tablerow1">
+                <td>
+                    <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+                </td>
+                <td align="right">24</td>
+            </tr>
+            <tr class="tablerow0">
+                <td>
+                    <a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+                </td>
+                <td align="right">3</td>
+            </tr>
+            <tr class="tablerow1">
+                <td>
+                    <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+                </td>
+                <td align="right">5</td>
+            </tr>
+            <tr class="tablerow0">
+                <td>
+                    <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+                </td>
+                <td align="right">15</td>
+            </tr>
+            <tr class="tablerow1">
+                <td>
+                    <b>Total</b>
+                </td>
+                <td align="right">
+                    <b>64</b>
+                </td>
+            </tr>
+        </table>
+        <h1>Warnings</h1>
+        <p>Click on a warning row to see full context information.</p>
+        <h2>
+            <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66946');">
+                <td>
+                    <span class="priority-1">CN</span>
+                </td>
+                <td>org.jfree.chart.labels.AbstractPieItemLabelGenerator defines clone() but doesn't implement Cloneable</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66946" style="display: none;">
+                        <a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">Bug type CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.labels.AbstractPieItemLabelGenerator
+                        <br />
+                        In method org.jfree.chart.labels.AbstractPieItemLabelGenerator.clone()
+                        <br />
+                        At AbstractPieItemLabelGenerator.java:[lines 231-239]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68036');">
+                <td>
+                    <span class="priority-1">CN</span>
+                </td>
+                <td>org.jfree.chart.util.LogFormat defines clone() but doesn't implement Cloneable</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68036" style="display: none;">
+                        <a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">Bug type CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.util.LogFormat
+                        <br />
+                        In method org.jfree.chart.util.LogFormat.clone()
+                        <br />
+                        At LogFormat.java:[lines 258-260]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68090');">
+                <td>
+                    <span class="priority-1">CN</span>
+                </td>
+                <td>org.jfree.chart.util.RelativeDateFormat defines clone() but doesn't implement Cloneable</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68090" style="display: none;">
+                        <a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">Bug type CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.util.RelativeDateFormat
+                        <br />
+                        In method org.jfree.chart.util.RelativeDateFormat.clone()
+                        <br />
+                        At RelativeDateFormat.java:[lines 579-582]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68510');">
+                <td>
+                    <span class="priority-1">CN</span>
+                </td>
+                <td>org.jfree.ui.FloatDimension defines clone() but doesn't implement Cloneable</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68510" style="display: none;">
+                        <a href="#CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">Bug type CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE (click for details)</a>
+                        <br />
+                        In class org.jfree.ui.FloatDimension
+                        <br />
+                        In method org.jfree.ui.FloatDimension.clone()
+                        <br />
+                        At FloatDimension.java:[line 152]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68720');">
+                <td>
+                    <span class="priority-1">Nm</span>
+                </td>
+                <td>The class name org.jfree.ui.about.Library shadows the simple name of the superclass org.jfree.base.Library</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68720" style="display: none;">
+                        <a href="#NM_SAME_SIMPLE_NAME_AS_SUPERCLASS">Bug type NM_SAME_SIMPLE_NAME_AS_SUPERCLASS (click for details)</a>
+                        <br />
+                        In class org.jfree.ui.about.Library
+                        <br />
+                        In class org.jfree.base.Library
+                        <br />
+                        At Library.java:[lines 63-75]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68767');">
+                <td>
+                    <span class="priority-1">Nm</span>
+                </td>
+                <td>The class name org.junit.AssumptionViolatedException shadows the simple name of the superclass org.junit.internal.AssumptionViolatedException</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68767" style="display: none;">
+                        <a href="#NM_SAME_SIMPLE_NAME_AS_SUPERCLASS">Bug type NM_SAME_SIMPLE_NAME_AS_SUPERCLASS (click for details)</a>
+                        <br />
+                        In class org.junit.AssumptionViolatedException
+                        <br />
+                        In class org.junit.internal.AssumptionViolatedException
+                        <br />
+                        At AssumptionViolatedException.java:[lines 22-45]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N69112');">
+                <td>
+                    <span class="priority-1">Nm</span>
+                </td>
+                <td>The class name org.junit.internal.runners.model.MultipleFailureException shadows the simple name of the superclass org.junit.runners.model.MultipleFailureException</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N69112" style="display: none;">
+                        <a href="#NM_SAME_SIMPLE_NAME_AS_SUPERCLASS">Bug type NM_SAME_SIMPLE_NAME_AS_SUPERCLASS (click for details)</a>
+                        <br />
+                        In class org.junit.internal.runners.model.MultipleFailureException
+                        <br />
+                        In class org.junit.runners.model.MultipleFailureException
+                        <br />
+                        At MultipleFailureException.java:[lines 10-11]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65772');">
+                <td>
+                    <span class="priority-1">INT</span>
+                </td>
+                <td>Bad comparison of nonnegative value with 0x80000000 in com.toedter.calendar.JMonthChooser.setMonth(int)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65772" style="display: none;">
+                        <a href="#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">Bug type INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE (click for details)</a>
+                        <br />
+                        In class com.toedter.calendar.JMonthChooser
+                        <br />
+                        In method com.toedter.calendar.JMonthChooser.setMonth(int)
+                        <br />
+                        Value 0x80000000
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68814');">
+                <td>
+                    <span class="priority-1">NP</span>
+                </td>
+                <td>Non-virtual method call in org.junit.experimental.max.MaxCore$1.getRunner() passes null for non-null parameter of new org.junit.internal.runners.ErrorReportingRunner(Class, Throwable)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68814" style="display: none;">
+                        <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
+                        <br />
+                        In class org.junit.experimental.max.MaxCore$1
+                        <br />
+                        In method org.junit.experimental.max.MaxCore$1.getRunner()
+                        <br />
+                        Called method new org.junit.internal.runners.ErrorReportingRunner(Class, Throwable)
+                        <br />
+                        At MaxCore.java:[line 117]
+                        <br />
+                        Argument 1 is definitely null but must not be null
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_I18N">Internationalization Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65605');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in com.orsoncharts.demo.SVGDemo1.createScatterDataset(Comparable, Comparable, Comparable): new java.io.InputStreamReader(InputStream)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65605" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class com.orsoncharts.demo.SVGDemo1
+                        <br />
+                        In method com.orsoncharts.demo.SVGDemo1.createScatterDataset(Comparable, Comparable, Comparable)
+                        <br />
+                        Called method new java.io.InputStreamReader(InputStream)
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N65653');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in new com.orsoncharts.util.json.parser.Yylex(InputStream): new java.io.InputStreamReader(InputStream)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N65653" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class com.orsoncharts.util.json.parser.Yylex
+                        <br />
+                        In method new com.orsoncharts.util.json.parser.Yylex(InputStream)
+                        <br />
+                        Called method new java.io.InputStreamReader(InputStream)
+                        <br />
+                        At Yylex.java:[line 292]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65927');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in demo.AnnotationDemo1.createDataset(): new java.io.InputStreamReader(InputStream)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65927" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class demo.AnnotationDemo1
+                        <br />
+                        In method demo.AnnotationDemo1.createDataset()
+                        <br />
+                        Called method new java.io.InputStreamReader(InputStream)
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66013');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in demo.orsoncharts.ScatterPlot3D3.createDataset(Comparable, Comparable, Comparable): new java.io.InputStreamReader(InputStream)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66013" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class demo.orsoncharts.ScatterPlot3D3
+                        <br />
+                        In method demo.orsoncharts.ScatterPlot3D3.createDataset(Comparable, Comparable, Comparable)
+                        <br />
+                        Called method new java.io.InputStreamReader(InputStream)
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66289');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in org.jfree.chart.ChartPanel.saveAsSVG(File): new java.io.FileWriter(File)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66289" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.ChartPanel
+                        <br />
+                        In method org.jfree.chart.ChartPanel.saveAsSVG(File)
+                        <br />
+                        Called method new java.io.FileWriter(File)
+                        <br />
+                        At ChartPanel.java:[line 2769]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68384');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in org.jfree.graphics2d.canvas.CanvasUtils.writeToHTML(File, String, String, int, int, String): new java.io.FileWriter(File)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68384" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class org.jfree.graphics2d.canvas.CanvasUtils
+                        <br />
+                        In method org.jfree.graphics2d.canvas.CanvasUtils.writeToHTML(File, String, String, int, int, String)
+                        <br />
+                        Called method new java.io.FileWriter(File)
+                        <br />
+                        At CanvasUtils.java:[line 69]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68901');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in org.junit.experimental.results.PrintableResult.toString(): java.io.ByteArrayOutputStream.toString()</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68901" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class org.junit.experimental.results.PrintableResult
+                        <br />
+                        In method org.junit.experimental.results.PrintableResult.toString()
+                        <br />
+                        Called method java.io.ByteArrayOutputStream.toString()
+                        <br />
+                        At PrintableResult.java:[line 61]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68964');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Found reliance on default encoding in org.junit.experimental.results.PrintableResult.toString(): new java.io.PrintStream(OutputStream)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68964" style="display: none;">
+                        <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                        <br />
+                        In class org.junit.experimental.results.PrintableResult
+                        <br />
+                        In method org.junit.experimental.results.PrintableResult.toString()
+                        <br />
+                        Called method new java.io.PrintStream(OutputStream)
+                        <br />
+                        At PrintableResult.java:[line 60]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66737');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.axis.CyclicNumberAxis.DEFAULT_ADVANCE_LINE_STROKE isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66737" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.CyclicNumberAxis
+                        <br />
+                        Field org.jfree.chart.axis.CyclicNumberAxis.DEFAULT_ADVANCE_LINE_STROKE
+                        <br />
+                        At CyclicNumberAxis.java:[line 134]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66842');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.axis.QuarterDateFormat.ROMAN_QUARTERS is a mutable array</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66842" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.QuarterDateFormat
+                        <br />
+                        Field org.jfree.chart.axis.QuarterDateFormat.ROMAN_QUARTERS
+                        <br />
+                        At QuarterDateFormat.java:[line 76]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66894');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.axis.SegmentedTimeline.NO_DST_TIME_ZONE isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66894" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.SegmentedTimeline
+                        <br />
+                        Field org.jfree.chart.axis.SegmentedTimeline.NO_DST_TIME_ZONE
+                        <br />
+                        At SegmentedTimeline.java:[line 282]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66352');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.ChartPanel.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66352" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.ChartPanel
+                        <br />
+                        Field org.jfree.chart.ChartPanel.localizationResources
+                        <br />
+                        At ChartPanel.java:[line 534]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67000');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.needle.MeterNeedle.transform isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67000" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.needle.MeterNeedle
+                        <br />
+                        Field org.jfree.chart.needle.MeterNeedle.transform
+                        <br />
+                        At MeterNeedle.java:[line 101]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67052');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.CategoryPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67052" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.CategoryPlot
+                        <br />
+                        Field org.jfree.chart.plot.CategoryPlot.localizationResources
+                        <br />
+                        At CategoryPlot.java:[line 321]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67157');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.CompassPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67157" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.CompassPlot
+                        <br />
+                        Field org.jfree.chart.plot.CompassPlot.localizationResources
+                        <br />
+                        At CompassPlot.java:[line 172]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67209');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.ContourPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67209" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.ContourPlot
+                        <br />
+                        Field org.jfree.chart.plot.ContourPlot.localizationResources
+                        <br />
+                        At ContourPlot.java:[line 230]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67261');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE is a mutable array</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67261" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.DefaultDrawingSupplier
+                        <br />
+                        Field org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_OUTLINE_PAINT_SEQUENCE
+                        <br />
+                        At DefaultDrawingSupplier.java:[line 86]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67313');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE is a mutable array</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67313" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.DefaultDrawingSupplier
+                        <br />
+                        Field org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_OUTLINE_STROKE_SEQUENCE
+                        <br />
+                        At DefaultDrawingSupplier.java:[line 99]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67365');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE is a mutable array</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67365" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.DefaultDrawingSupplier
+                        <br />
+                        Field org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_PAINT_SEQUENCE
+                        <br />
+                        At DefaultDrawingSupplier.java:[line 83]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67417');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE is a mutable array</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67417" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.DefaultDrawingSupplier
+                        <br />
+                        Field org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_SHAPE_SEQUENCE
+                        <br />
+                        At DefaultDrawingSupplier.java:[line 105]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67469');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE is a mutable array</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67469" style="display: none;">
+                        <a href="#MS_MUTABLE_ARRAY">Bug type MS_MUTABLE_ARRAY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.DefaultDrawingSupplier
+                        <br />
+                        Field org.jfree.chart.plot.DefaultDrawingSupplier.DEFAULT_STROKE_SEQUENCE
+                        <br />
+                        At DefaultDrawingSupplier.java:[line 94]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67521');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.FastScatterPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67521" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.FastScatterPlot
+                        <br />
+                        Field org.jfree.chart.plot.FastScatterPlot.localizationResources
+                        <br />
+                        At FastScatterPlot.java:[line 178]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67573');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.MeterPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67573" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.MeterPlot
+                        <br />
+                        Field org.jfree.chart.plot.MeterPlot.localizationResources
+                        <br />
+                        At MeterPlot.java:[line 219]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67625');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.PiePlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67625" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.PiePlot
+                        <br />
+                        Field org.jfree.chart.plot.PiePlot.localizationResources
+                        <br />
+                        At PiePlot.java:[line 526]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67677');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.PolarPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67677" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.PolarPlot
+                        <br />
+                        Field org.jfree.chart.plot.PolarPlot.localizationResources
+                        <br />
+                        At PolarPlot.java:[line 161]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67782');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.ThermometerPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67782" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.ThermometerPlot
+                        <br />
+                        Field org.jfree.chart.plot.ThermometerPlot.localizationResources
+                        <br />
+                        At ThermometerPlot.java:[line 385]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67834');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.chart.plot.XYPlot.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67834" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.XYPlot
+                        <br />
+                        Field org.jfree.chart.plot.XYPlot.localizationResources
+                        <br />
+                        At XYPlot.java:[line 345]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68280');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.experimental.chart.swt.ChartComposite.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68280" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.experimental.chart.swt.ChartComposite
+                        <br />
+                        Field org.jfree.experimental.chart.swt.ChartComposite.localizationResources
+                        <br />
+                        At ChartComposite.java:[line 356]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68332');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.experimental.chart.swt.editor.SWTChartEditor.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68332" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.experimental.chart.swt.editor.SWTChartEditor
+                        <br />
+                        Field org.jfree.experimental.chart.swt.editor.SWTChartEditor.localizationResources
+                        <br />
+                        At SWTChartEditor.java:[line 85]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68564');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.ui.FontChooserPanel.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68564" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.ui.FontChooserPanel
+                        <br />
+                        Field org.jfree.ui.FontChooserPanel.localizationResources
+                        <br />
+                        At FontChooserPanel.java:[line 91]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68616');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.ui.InsetsChooserPanel.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68616" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.ui.InsetsChooserPanel
+                        <br />
+                        Field org.jfree.ui.InsetsChooserPanel.localizationResources
+                        <br />
+                        At InsetsChooserPanel.java:[line 88]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68668');">
+                <td>
+                    <span class="priority-1">MS</span>
+                </td>
+                <td>org.jfree.ui.InsetsTextField.localizationResources isn't final but should be</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68668" style="display: none;">
+                        <a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+                        <br />
+                        In class org.jfree.ui.InsetsTextField
+                        <br />
+                        Field org.jfree.ui.InsetsTextField.localizationResources
+                        <br />
+                        At InsetsTextField.java:[line 65]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66151');">
+                <td>
+                    <span class="priority-1">LI</span>
+                </td>
+                <td>Incorrect lazy initialization and update of static field junit.runner.BaseTestRunner.fPreferences in junit.runner.BaseTestRunner.getPreferences()</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66151" style="display: none;">
+                        <a href="#LI_LAZY_INIT_UPDATE_STATIC">Bug type LI_LAZY_INIT_UPDATE_STATIC (click for details)</a>
+                        <br />
+                        In class junit.runner.BaseTestRunner
+                        <br />
+                        In method junit.runner.BaseTestRunner.getPreferences()
+                        <br />
+                        On field junit.runner.BaseTestRunner.fPreferences
+                        <br />
+                        At BaseTestRunner.java:[lines 47-48]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66220');">
+                <td>
+                    <span class="priority-1">LI</span>
+                </td>
+                <td>Incorrect lazy initialization and update of static field org.jfree.base.modules.PackageManager.instances in org.jfree.base.modules.PackageManager.createInstance(AbstractBoot)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66220" style="display: none;">
+                        <a href="#LI_LAZY_INIT_UPDATE_STATIC">Bug type LI_LAZY_INIT_UPDATE_STATIC (click for details)</a>
+                        <br />
+                        In class org.jfree.base.modules.PackageManager
+                        <br />
+                        In method org.jfree.base.modules.PackageManager.createInstance(AbstractBoot)
+                        <br />
+                        On field org.jfree.base.modules.PackageManager.instances
+                        <br />
+                        At PackageManager.java:[lines 144-145]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N69159');">
+                <td>
+                    <span class="priority-1">RV</span>
+                </td>
+                <td>Return value of putIfAbsent is ignored, but description is reused in org.junit.runners.BlockJUnit4ClassRunner.describeChild(FrameworkMethod)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N69159" style="display: none;">
+                        <a href="#RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED">Bug type RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED (click for details)</a>
+                        <br />
+                        In class org.junit.runners.BlockJUnit4ClassRunner
+                        <br />
+                        In method org.junit.runners.BlockJUnit4ClassRunner.describeChild(FrameworkMethod)
+                        <br />
+                        Called method java.util.concurrent.ConcurrentHashMap.putIfAbsent(Object, Object)
+                        <br />
+                        Type org.junit.runner.Description
+                        <br />
+                        Value loaded from description
+                        <br />
+                        At BlockJUnit4ClassRunner.java:[line 98]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_PERFORMANCE">Performance Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65716');">
+                <td>
+                    <span class="priority-1">Bx</span>
+                </td>
+                <td>Boxing/unboxing to parse a primitive com.toedter.calendar.JDayChooser.actionPerformed(ActionEvent)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65716" style="display: none;">
+                        <a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bug type DM_BOXED_PRIMITIVE_FOR_PARSING (click for details)</a>
+                        <br />
+                        In class com.toedter.calendar.JDayChooser
+                        <br />
+                        In method com.toedter.calendar.JDayChooser.actionPerformed(ActionEvent)
+                        <br />
+                        Called method Integer.intValue()
+                        <br />
+                        Should call Integer.parseInt(String) instead
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N65815');">
+                <td>
+                    <span class="priority-1">Bx</span>
+                </td>
+                <td>Boxing/unboxing to parse a primitive com.toedter.components.JSpinField.actionPerformed(ActionEvent)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N65815" style="display: none;">
+                        <a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bug type DM_BOXED_PRIMITIVE_FOR_PARSING (click for details)</a>
+                        <br />
+                        In class com.toedter.components.JSpinField
+                        <br />
+                        In method com.toedter.components.JSpinField.actionPerformed(ActionEvent)
+                        <br />
+                        Called method Integer.intValue()
+                        <br />
+                        Should call Integer.parseInt(String) instead
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65871');">
+                <td>
+                    <span class="priority-1">Bx</span>
+                </td>
+                <td>Boxing/unboxing to parse a primitive com.toedter.components.JSpinField.caretUpdate(CaretEvent)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65871" style="display: none;">
+                        <a href="#DM_BOXED_PRIMITIVE_FOR_PARSING">Bug type DM_BOXED_PRIMITIVE_FOR_PARSING (click for details)</a>
+                        <br />
+                        In class com.toedter.components.JSpinField
+                        <br />
+                        In method com.toedter.components.JSpinField.caretUpdate(CaretEvent)
+                        <br />
+                        Called method Integer.intValue()
+                        <br />
+                        Should call Integer.parseInt(String) instead
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N65975');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>new demo.SerializationTest1(String) forces garbage collection; extremely dubious except in benchmarking code</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N65975" style="display: none;">
+                        <a href="#DM_GC">Bug type DM_GC (click for details)</a>
+                        <br />
+                        In class demo.SerializationTest1
+                        <br />
+                        In method new demo.SerializationTest1(String)
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68447');">
+                <td>
+                    <span class="priority-1">Dm</span>
+                </td>
+                <td>Invocation of java.net.URL.equals(Object), which blocks to do domain name resolution, in org.jfree.io.IOUtils.createRelativeURL(URL, URL)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68447" style="display: none;">
+                        <a href="#DMI_BLOCKING_METHODS_ON_URL">Bug type DMI_BLOCKING_METHODS_ON_URL (click for details)</a>
+                        <br />
+                        In class org.jfree.io.IOUtils
+                        <br />
+                        In method org.jfree.io.IOUtils.createRelativeURL(URL, URL)
+                        <br />
+                        Called method java.net.URL.equals(Object)
+                        <br />
+                        At IOUtils.java:[line 226]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h2>
+            <a name="Warnings_STYLE">Dodgy code Warnings</a>
+        </h2>
+        <table class="warningtable" width="100%" cellspacing="0">
+            <tr class="tableheader">
+                <th align="left">Code</th>
+                <th align="left">Warning</th>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N65552');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in com.orsoncharts.axis.NumberAxis3D.equals(Object)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N65552" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class com.orsoncharts.axis.NumberAxis3D
+                        <br />
+                        In method com.orsoncharts.axis.NumberAxis3D.equals(Object)
+                        <br />
+                        At NumberAxis3D.java:[line 595]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66061');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in demo.orsoncharts.swing.AxisRangeDemo5$CustomDemoPanel.stateChanged(ChangeEvent)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66061" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class demo.orsoncharts.swing.AxisRangeDemo5$CustomDemoPanel
+                        <br />
+                        In method demo.orsoncharts.swing.AxisRangeDemo5$CustomDemoPanel.stateChanged(ChangeEvent)
+                        <br />
+                        In &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66099');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in demo.orsoncharts.swing.AxisRangeDemo6$CustomDemoPanel.stateChanged(ChangeEvent)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66099" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class demo.orsoncharts.swing.AxisRangeDemo6$CustomDemoPanel
+                        <br />
+                        In method demo.orsoncharts.swing.AxisRangeDemo6$CustomDemoPanel.stateChanged(ChangeEvent)
+                        <br />
+                        In &lt;Unknown&gt;
+                        <br />
+                        Another occurrence at &lt;Unknown&gt;
+                        <br />
+                        Another occurrence at &lt;Unknown&gt;
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66404');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.axis.AxisSpace.equals(Object)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66404" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.AxisSpace
+                        <br />
+                        In method org.jfree.chart.axis.AxisSpace.equals(Object)
+                        <br />
+                        At AxisSpace.java:[line 337]
+                        <br />
+                        Another occurrence at AxisSpace.java:[line 340]
+                        <br />
+                        Another occurrence at AxisSpace.java:[line 343]
+                        <br />
+                        Another occurrence at AxisSpace.java:[line 346]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66490');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.axis.CyclicNumberAxis.equals(Object)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66490" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.CyclicNumberAxis
+                        <br />
+                        In method org.jfree.chart.axis.CyclicNumberAxis.equals(Object)
+                        <br />
+                        At CyclicNumberAxis.java:[line 1163]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66543');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.axis.CyclicNumberAxis.refreshTicksHorizontal(Graphics2D, Rectangle2D, RectangleEdge)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66543" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.CyclicNumberAxis
+                        <br />
+                        In method org.jfree.chart.axis.CyclicNumberAxis.refreshTicksHorizontal(Graphics2D, Rectangle2D, RectangleEdge)
+                        <br />
+                        At CyclicNumberAxis.java:[line 476]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 495]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 513]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 536]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N66629');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.axis.CyclicNumberAxis.refreshVerticalTicks(Graphics2D, Rectangle2D, RectangleEdge)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N66629" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.CyclicNumberAxis
+                        <br />
+                        In method org.jfree.chart.axis.CyclicNumberAxis.refreshVerticalTicks(Graphics2D, Rectangle2D, RectangleEdge)
+                        <br />
+                        At CyclicNumberAxis.java:[line 624]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 643]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 664]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 682]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 703]
+                        <br />
+                        Another occurrence at CyclicNumberAxis.java:[line 710]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N66789');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.axis.NumberAxis.autoAdjustRange()</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N66789" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.axis.NumberAxis
+                        <br />
+                        In method org.jfree.chart.axis.NumberAxis.autoAdjustRange()
+                        <br />
+                        At NumberAxis.java:[line 467]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67104');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.plot.ColorPalette.equals(Object)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67104" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.ColorPalette
+                        <br />
+                        In method org.jfree.chart.plot.ColorPalette.equals(Object)
+                        <br />
+                        At ColorPalette.java:[line 409]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67729');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.plot.SpiderWebPlot.calculateLabelLocation(Rectangle2D, double, Rectangle2D, double)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67729" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.plot.SpiderWebPlot
+                        <br />
+                        In method org.jfree.chart.plot.SpiderWebPlot.calculateLabelLocation(Rectangle2D, double, Rectangle2D, double)
+                        <br />
+                        At SpiderWebPlot.java:[line 1465]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N67886');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.renderer.category.StackedBarRenderer.drawItem(Graphics2D, CategoryItemRendererState, Rectangle2D, CategoryPlot, CategoryAxis, ValueAxis, CategoryDataset, int, int, int)</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N67886" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.renderer.category.StackedBarRenderer
+                        <br />
+                        In method org.jfree.chart.renderer.category.StackedBarRenderer.drawItem(Graphics2D, CategoryItemRendererState, Rectangle2D, CategoryPlot, CategoryAxis, ValueAxis, CategoryDataset, int, int, int)
+                        <br />
+                        At StackedBarRenderer.java:[line 384]
+                        <br />
+                        Another occurrence at StackedBarRenderer.java:[line 385]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N67950');">
+                <td>
+                    <span class="priority-1">FE</span>
+                </td>
+                <td>Test for floating point equality in org.jfree.chart.renderer.xy.XYDifferenceRenderer.drawItemPass0(Graphics2D, Rectangle2D, PlotRenderingInfo, XYPlot, ValueAxis, ValueAxis, XYDataset, int, int, CrosshairState)</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N67950" style="display: none;">
+                        <a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+                        <br />
+                        In class org.jfree.chart.renderer.xy.XYDifferenceRenderer
+                        <br />
+                        In method org.jfree.chart.renderer.xy.XYDifferenceRenderer.drawItemPass0(Graphics2D, Rectangle2D, PlotRenderingInfo, XYPlot, ValueAxis, ValueAxis, XYDataset, int, int, CrosshairState)
+                        <br />
+                        At XYDifferenceRenderer.java:[line 710]
+                        <br />
+                        Another occurrence at XYDifferenceRenderer.java:[line 710]
+                        <br />
+                        Another occurrence at XYDifferenceRenderer.java:[line 712]
+                        <br />
+                        Another occurrence at XYDifferenceRenderer.java:[line 712]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N69027');">
+                <td>
+                    <span class="priority-1">IA</span>
+                </td>
+                <td>Potentially ambiguous invocation of either an outer or inherited method org.junit.runners.ParentRunner.getTestClass() in org.junit.experimental.theories.Theories$TheoryAnchor$1.createTest()</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N69027" style="display: none;">
+                        <a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+                        <br />
+                        In class org.junit.experimental.theories.Theories$TheoryAnchor$1
+                        <br />
+                        In method org.junit.experimental.theories.Theories$TheoryAnchor$1.createTest()
+                        <br />
+                        Inherited method org.junit.runners.ParentRunner.getTestClass()
+                        <br />
+                        Did you intend to invoke org.junit.experimental.theories.Theories$TheoryAnchor.getTestClass()
+                        <br />
+                        At Theories.java:[line 258]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow0" onclick="toggleRow('N68144');">
+                <td>
+                    <span class="priority-1">UC</span>
+                </td>
+                <td>Useless condition: it's known that week &lt;= 53 ('5') at this point</td>
+            </tr>
+            <tr class="detailrow0">
+                <td />
+                <td>
+                    <p id="N68144" style="display: none;">
+                        <a href="#UC_USELESS_CONDITION">Bug type UC_USELESS_CONDITION (click for details)</a>
+                        <br />
+                        In class org.jfree.data.time.Week
+                        <br />
+                        In method new org.jfree.data.time.Week(int, int)
+                        <br />
+                        Value week &lt;= 53 ('5')
+                        <br />
+                        Unreachable code at Week.java:[line 133]
+                        <br />
+                        At Week.java:[line 132]
+                    </p>
+                </td>
+            </tr>
+            <tr class="tablerow1" onclick="toggleRow('N68212');">
+                <td>
+                    <span class="priority-1">UC</span>
+                </td>
+                <td>Useless condition: it's known that week &lt;= 53 ('5') at this point</td>
+            </tr>
+            <tr class="detailrow1">
+                <td />
+                <td>
+                    <p id="N68212" style="display: none;">
+                        <a href="#UC_USELESS_CONDITION">Bug type UC_USELESS_CONDITION (click for details)</a>
+                        <br />
+                        In class org.jfree.data.time.Week
+                        <br />
+                        In method new org.jfree.data.time.Week(int, Year)
+                        <br />
+                        Value week &lt;= 53 ('5')
+                        <br />
+                        Unreachable code at Week.java:[line 149]
+                        <br />
+                        At Week.java:[line 148]
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h1>
+            <a name="Details">Details</a>
+        </h1>
+        <h2>
+            <a name="DM_BOXED_PRIMITIVE_FOR_PARSING">DM_BOXED_PRIMITIVE_FOR_PARSING: Boxing/unboxing to parse a primitive</a>
+        </h2>
+          <p>A boxed primitive is created from a String, just to extract the unboxed primitive value.
+  It is more efficient to just call the static parseXXX method.</p>
+
+    
+        <h2>
+            <a name="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE">CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE: Class defines clone() but doesn't implement Cloneable</a>
+        </h2>
+        <p> This class defines a clone() method but the class doesn't implement Cloneable.
+There are some situations in which this is OK (e.g., you want to control how subclasses
+can clone themselves), but just make sure that this is what you intended.
+</p>
+
+    
+        <h2>
+            <a name="DM_GC">DM_GC: Explicit garbage collection; extremely dubious except in benchmarking code</a>
+        </h2>
+          <p> Code explicitly invokes garbage collection.
+  Except for specific use in benchmarking, this is very dubious.</p>
+  <p>In the past, situations where people have explicitly invoked
+  the garbage collector in routines such as close or finalize methods
+  has led to huge performance black holes. Garbage collection
+   can be expensive. Any situation that forces hundreds or thousands
+   of garbage collections will bring the machine to a crawl.</p>
+
+    
+        <h2>
+            <a name="DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING: Reliance on default encoding</a>
+        </h2>
+        <p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      
+        <h2>
+            <a name="DMI_BLOCKING_METHODS_ON_URL">DMI_BLOCKING_METHODS_ON_URL: The equals and hashCode methods of URL are blocking</a>
+        </h2>
+          <p> The equals and hashCode
+method of URL perform domain name resolution, this can result in a big performance hit.
+See <a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> for more information.
+Consider using <code>java.net.URI</code> instead.
+   </p>
+
+    
+        <h2>
+            <a name="FE_FLOATING_POINT_EQUALITY">FE_FLOATING_POINT_EQUALITY: Test for floating point equality</a>
+        </h2>
+           
+    <p>
+    This operation compares two floating point values for equality.
+    Because floating point calculations may involve rounding,
+   calculated float and double values may not be accurate.
+    For values that must be precise, such as monetary values,
+   consider using a fixed-precision type such as BigDecimal.
+    For values that need not be precise, consider comparing for equality
+    within some range, for example:
+    <code>if ( Math.abs(x - y) &lt; .0000001 )</code>.
+   See the Java Language Specification, section 4.2.4.
+    </p>
+    
+     
+        <h2>
+            <a name="IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD: Potentially ambiguous invocation of either an inherited or outer method</a>
+        </h2>
+          <p>
+An inner class is invoking a method that could be resolved to either a inherited method or a method defined in an outer class.
+For example, you invoke <code>foo(17)</code>, which is defined in both a superclass and in an outer method.
+By the Java semantics,
+it will be resolved to invoke the inherited method, but this may not be want
+you intend.
+</p>
+<p>If you really intend to invoke the inherited method,
+invoke it by invoking the method on super (e.g., invoke super.foo(17)), and
+thus it will be clear to other readers of your code and to FindBugs
+that you want to invoke the inherited method, not the method in the outer class.
+</p>
+<p>If you call <code>this.foo(17)</code>, then the inherited method will be invoked. However, since FindBugs only looks at
+classfiles, it
+can't tell the difference between an invocation of <code>this.foo(17)</code> and <code>foo(17)</code>, it will still
+complain about a potential ambiguous invocation.
+</p>
+
+    
+        <h2>
+            <a name="INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE: Bad comparison of nonnegative value with negative constant or zero</a>
+        </h2>
+        <p> This code compares a value that is guaranteed to be non-negative with a negative constant or zero.
+</p>
+
+    
+        <h2>
+            <a name="LI_LAZY_INIT_UPDATE_STATIC">LI_LAZY_INIT_UPDATE_STATIC: Incorrect lazy initialization and update of static field</a>
+        </h2>
+        <p> This method contains an unsynchronized lazy initialization of a static field.
+After the field is set, the object stored into that location is further updated or accessed.
+The setting of the field is visible to other threads as soon as it is set. If the
+futher accesses in the method that set the field serve to initialize the object, then
+you have a <em>very serious</em> multithreading bug, unless something else prevents
+any other thread from accessing the stored object until it is fully initialized.
+</p>
+<p>Even if you feel confident that the method is never called by multiple
+threads, it might be better to not set the static field until the value
+you are setting it to is fully populated/initialized.
+
+    
+        <h2>
+            <a name="MS_MUTABLE_ARRAY">MS_MUTABLE_ARRAY: Field is a mutable array</a>
+        </h2>
+        <p> A final static field references an array
+   and can be accessed by malicious code or
+        by accident from another package.
+   This code can freely modify the contents of the array.</p>
+
+    
+        <h2>
+            <a name="MS_SHOULD_BE_FINAL">MS_SHOULD_BE_FINAL: Field isn't final but should be</a>
+        </h2>
+           <p>
+This static field public but not final, and
+could be changed by malicious code or
+        by accident from another package.
+        The field could be made final to avoid
+        this vulnerability.</p>
+
+    
+        <h2>
+            <a name="NM_SAME_SIMPLE_NAME_AS_SUPERCLASS">NM_SAME_SIMPLE_NAME_AS_SUPERCLASS: Class names shouldn't shadow simple name of superclass</a>
+        </h2>
+          <p> This class has a simple name that is identical to that of its superclass, except
+that its superclass is in a different package (e.g., <code>alpha.Foo</code> extends <code>beta.Foo</code>).
+This can be exceptionally confusing, create lots of situations in which you have to look at import statements
+to resolve references and creates many
+opportunities to accidentally define methods that do not override methods in their superclasses.
+</p>
+
+    
+        <h2>
+            <a name="NP_NULL_PARAM_DEREF_NONVIRTUAL">NP_NULL_PARAM_DEREF_NONVIRTUAL: Non-virtual method call passes null for non-null parameter</a>
+        </h2>
+              
+      <p>
+      A possibly-null value is passed to a non-null method parameter.
+    Either the parameter is annotated as a parameter that should
+    always be non-null, or analysis has shown that it will always be
+    dereferenced.
+      </p>
+      
+   
+        <h2>
+            <a name="RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED">RV_RETURN_VALUE_OF_PUTIFABSENT_IGNORED: Return value of putIfAbsent ignored, value passed to putIfAbsent reused</a>
+        </h2>
+                  
+        The <code>putIfAbsent</code> method is typically used to ensure that a
+        single value is associated with a given key (the first value for which put
+        if absent succeeds).
+        If you ignore the return value and retain a reference to the value passed in,
+        you run the risk of retaining a value that is not the one that is associated with the key in the map.
+        If it matters which one you use and you use the one that isn't stored in the map,
+        your program will behave incorrectly.
+          
+      
+        <h2>
+            <a name="UC_USELESS_CONDITION">UC_USELESS_CONDITION: Condition has no effect</a>
+        </h2>
+        <p>This condition always produces the same result as the value of the involved variable was narrowed before. 
+Probably something else was meant or condition can be removed.</p>
+
+    
+    </body>
+</html>

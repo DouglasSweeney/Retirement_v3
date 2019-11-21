@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="Retirement" basedir="/home/dks/eclipse-workspace/Retirement">
+    <property name="base.dir" value="." />
+    <property name="src.dir" value="src" />
+    <property name="lib.dir" value="lib" />
+    <property name="build.dir" value="build" />
+	
+    <property name="junitlib.dir" value="lib/junit" />
+    <property name="log4j2lib.dir" value="lib/log4j2" />
+    <property name="cobertura.dir" value="lib/cobertura" />
+    <property name="checkstyle.dir" value="lib/checkstyle" />
+    <property name="jcalendar.dir" value="lib/jcalendar" />
+    <property name="jfreechart.dir" value="lib/jfreechart" />
+    <property name="instrumented.dir" value="build/cobertura/instrumented" />
+    <property name="classes.dir" value="build/classes" />
+    <property name="reports.xml.dir" value="logs/cobertura/xml" />
+    <property name="reports.html.dir" value="logs/cobertura/html" />
+    <property name="reports.javadoc" value="logs/javadoc" />
+    <property name="reports.checkstyle" value="logs/checkstyle" />
+    <property name="reports.cpd" value="logs/cpd" />
+    <property name="spotbugs.home" value="/opt/spotbugs-3.1.3/" />
+    <property name="jars.dir" value="." />
+	
+    <path id="project.sourcepath">
+	<fileset dir="src"
+	   includes="**/*"
+	   excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/>
+    </path>
+	
+    <path id="cobertura.classpath">
+    	<fileset dir="${cobertura.dir}">
+        	<include name="cobertura*.jar" />
+        	<include name="*.jar" />
+    	</fileset>
+    </path>
+
+    <path id="jfreechart.classpath">
+    	<fileset dir="${jfreechart.dir}/jfreechart-1.0.19/lib">
+         	<include name="*.jar" />
+    	</fileset>
+    </path>
+
+    <path id="jcalendar.classpath">
+    	<fileset dir="${jcalendar.dir}">
+         	<include name="*.jar" />
+    	</fileset>
+    </path>
+
+    <path id="checkstyle.classpath">
+	<fileset dir="${checkstyle.dir}">
+	        <include name="ivy*.jar" />
+	        <include name="*.jar" />
+	</fileset>
+    </path>
+
+    <path id="pmd.classpath">
+    	<pathelement location="${build}"/>
+    		<fileset dir="//opt/pmd-bin-6.6.0/lib/">
+	        <include name="*.jar"/>
+    	</fileset>
+    </path>
+
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
+    <target name="clean" description="Delete all generated files">
+	    <delete dir="${instrumented.dir}"      failonerror="false"/>
+	    <delete dir="${reports.xml.dir}"       failonerror="false" />
+	    <delete dir="${reports.html.dir}"      failonerror="false" />
+ 	    <delete file="cobertura.ser"           failonerror="false" />
+ 	    <delete file="cobertura.log"           failonerror="false" />
+ 	    <delete file="${reports.cpd}/cpd.txt"  failonerror="false" />
+        <delete dir="${classes.dir}"           failonerror="false" />
+        <delete file="${ant.project.name}.jar" failonerror="false" />
+    </target>
+
+    <target name="compile" description="Compiles the source files">
+        <mkdir dir="${classes.dir}"/>
+        <javac destdir="${classes.dir}" debug="true" includeantruntime="true">
+	        <src path="${src.dir}"/>
+            <include name="**/*.java" />
+	        <exclude name="**/*Test.java" />
+	        <classpath>
+      	        <fileset dir="${lib.dir}">
+        	       <include name="**/*.jar"/>
+      		    </fileset>
+                <pathelement path="${classes.dir}"/>
+	        </classpath>
+            <compilerarg value="-Xlint:unchecked" />
+	    </javac> 
+    </target>
+
+   <target name="test-compile" description="Compiles the test source files">
+       <mkdir dir="${instrumented.dir}"/>
+       <javac destdir="${instrumented.dir}" debug="true" includeantruntime="true">
+	       <src path="${src.dir}"/>
+           <include name="**/*Test.java" />
+	       <classpath>
+      		  <fileset dir="${lib.dir}">
+        	      <include name="**/*.jar"/>
+      		  </fileset>
+              	  <pathelement path="${instrumented.dir}"/>
+	       </classpath>
+           <compilerarg value="-Xlint:unchecked" />
+           <compilerarg value="-implicit:none"/>
+         </javac> 
+   </target>
+
+   <target name="jar" description="JARs the project source files">
+        <delete file="${ant.project.name}.jar" failonerror="false" />
+        <jar destfile="${ant.project.name}.jar" basedir="${classes.dir}">
+           <zipgroupfileset dir="${jcalendar.dir}" includes="*.jar" />
+           <zipgroupfileset dir="${jfreechart.dir}" includes="**/*.jar" />
+            <manifest>
+                <attribute name="Main-Class"
+                    value="main.Main"/>
+            </manifest>
+        </jar>
+   </target>
+	
+   <target name="instrument" description="Create instrumented class files for the line coverage">
+        <cobertura-instrument todir="${instrumented.dir}" ignoreTrivial="true">
+            <ignore regex="org.apache.log4j.*" />
+            <ignore regex="org.slf4j.LoggerFactory.*" />
+            <includeclasses regex=".*" />
+            <excludeclasses regex=".*\.Test.*" />
+            <instrumentationClasspath>
+                <pathelement location="${classes.dir}" />
+            </instrumentationClasspath>
+         </cobertura-instrument> 
+   </target>
+	
+   <target name="test" description="Verify the system." depends="test-compile,instrument">
+	  <mkdir dir="${reports.xml.dir}"/>
+ 	  <junit fork="yes" forkmode="once" dir="${base.dir}" failureProperty="test.failed" printsummary="true">
+    	<!--
+        	Specify the name of the coverage data file to use.
+        	The value specified below is the default.
+	    -->	    
+    	<sysproperty key="net.sourceforge.cobertura.datafile"
+        	file="${base.dir}/cobertura.ser" />
+		
+	    <!--
+    	    Note the classpath order: instrumented classes are before the
+        	original (uninstrumented) classes.  This is important.
+	    -->
+    	<classpath location="${instrumented.dir}" />
+    	<classpath location="${classes.dir}" />
+
+	    <!--
+    	    The instrumented classes reference classes used by the
+        	Cobertura runtime, so Cobertura and its dependencies
+        	must be on your classpath.
+	    -->
+    	<classpath refid="cobertura.classpath" />
+	    <classpath location="${junitlib.dir}/junit-4.11.jar" />
+	    <classpath location="${junitlib.dir}/hamcrest-core-1.3.jar" />
+       
+
+	    <formatter type="xml" />
+    	<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
+    	<batchtest todir="${reports.xml.dir}" unless="testcase">
+        	<fileset dir="${src.dir}">
+            	<include name="**/*Test.java" />
+        	</fileset>
+    	</batchtest>
+      </junit>
+	
+      <mkdir dir="${reports.html.dir}"/>
+      <cobertura-report format="html" destdir="${reports.html.dir}">
+            <fileset dir="${src.dir}" casesensitive="yes">
+               <include name="**/*.java" />
+               <exclude name="**/*Stub.java" />
+            </fileset>
+      </cobertura-report>
+    </target>
+
+    <target name="coverage-report" description="Create the index.html line coverage report.">
+       <mkdir dir="${reports.html.dir}"/>
+	   <cobertura-report format="html" destdir="${reports.html.dir}">
+             <fileset dir="${src.dir}" casesensitive="yes">
+                <include name="**/*.java" />
+                <exclude name="**/*Stub.java" />
+             </fileset>
+  	 </cobertura-report>
+   </target>
+ 	
+   <target name="coverage-check" description="Set some parameters for red or green color">
+	   <cobertura-check branchrate="34" totallinerate="100" />
+   </target>
+   
+	   <target name="javadoc" description="Create the javadoc file for this source code.">
+	         <javadoc
+	           destdir="${reports.javadoc}"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="Application API">
+	           
+	           <classpath refid="cobertura.classpath" />
+	           <classpath location="${log4j2lib.dir}/log4j-api-2.5.jar" />
+	           <classpath location="${jcalendar.dir}/jcalendar-1.3.3.jar" />
+	           <classpath location="${jfreechart.dir}/jfreechart-1.0.19/lib/jfreechart-1.0.19.jar" />
+	            
+	           <fileset dir="src" defaultexcludes="yes">
+	                <include name="main/**"/>
+	                <include name="model/**"/>
+	                <include name="system/**"/>
+	                <include name="view/**"/>
+	            </fileset>
+
+	            <doctitle><![CDATA[<h1>Application</h1>]]></doctitle>
+	            <bottom><![CDATA[<i>Copyright &#169; 2016 DKS All Rights Reserved.</i>]]></bottom>
+	            <tag name="todo" scope="all" description="To do:"/>
+	            <link offline="true" href="http://docs.oracle.com/javase/8/docs/api/" packagelistLoc="/tmp"/>
+	            <link href="http://docs.oracle.com/javase/8/docs/api/"/>
+	    </javadoc>
+	   </target>
+	
+	<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
+
+        <target name="pmd">
+           <pmd rulesetfiles="rulesets/java/design.xml" shortFileNames="true">
+               <sourceLanguage name="java" version="1.8" />
+               <formatter type="net.sourceforge.pmd.renderers.HTMLRenderer" toFile="${basedir}/logs/pmd/index.html"/>
+               <fileset dir="${basedir}/src">
+                  <include name="**/*.java"/>
+              </fileset>
+            </pmd>
+	</target>
+
+        <target name="cpd">
+            <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="pmd.classpath"/>
+            <cpd minimumTokenCount="100" outputFile="${basedir}/logs/cpd/cpd.txt">
+               <fileset dir="${basedir}/src">
+                  <include name="**/*.java"/>
+               </fileset>
+            </cpd>
+        </target>
+
+        <taskdef resource="edu/umd/cs/findbugs/anttask/tasks.properties" classpath="/opt/spotbugs-3.1.3/spotbugs-ant.jar" />
+
+        <target name="spotbugs" depends="jar">
+  	   <spotbugs home="${spotbugs.home}" output="html" outputFile="${basedir}/logs/spotbugs/spotbugs.html" >
+              <fileset dir="${basedir}/buildclasses">
+                 <include name="**/*.class"/>
+              </fileset>
+           </spotbugs>
+        </target>
+
+	<target name="checkstyle"
+	        description="Generates a report of code convention violations."
+		depends="init-checkstyle">
+	  <!-- See http://checkstyle.sourceforge.net/anttask.html for full options of using checkstyle with ant-->
+	  <checkstyle config="google_checks.xml"
+	              failureProperty="checkstyle.failure"
+	              failOnViolation="false">
+	    <formatter type="xml" tofile="logs/checkstyle/checkstyle_report.xml"/>
+	    <fileset dir="src/main" includes="**/*.java"/>
+	    <fileset dir="src/model" includes="**/*.java"/>
+	    <fileset dir="src/system" includes="**/*.java"/>
+	    <fileset dir="src/view" includes="**/*.java"/>
+	  </checkstyle>
+	    <xslt in="logs/checkstyle/checkstyle_report.xml"
+	          out="logs/checkstyle/checkstyle_report.html"
+	          style="build/ant/checkstyle-noframes-severity-sorted.xsl"/>
+	</target>
+
+	<target name="init-checkstyle" depends="resolve">
+		<path id="checkstyle.lib.path">
+	            <fileset dir="lib/checkstyle" includes="*.jar"/>
+		</path>
+		<!-- Sevntu custom checks are retrieved by Ivy into lib folder and will be accessible to checkstyle-->
+		<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpathref="checkstyle.lib.path"/>
+	</target>
+
+        <target name="resolve" description="retrieve dependencies with ivy" depends="init-ivy">
+	    	<ivy:settings file="build/ant/ivysettings.xml" />
+	        <ivy:retrieve />    	
+	</target>
+
+
+	    <property name="ivy.install.version" value="2.1.0-rc2" />
+	    <!-- You may place ivy.jar into other folder if you want to keep folder lib clean-->
+	    <property name="ivy.jar.dir" value="lib/checkstyle" />
+	    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	    <target name="download-ivy" unless="offline">
+
+	        <mkdir dir="${ivy.jar.dir}"/>
+	        <!-- download Ivy from web site so that it can be used even without any special installation -->
+	        <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" 
+	             dest="${ivy.jar.file}" usetimestamp="true"/>
+	    </target>
+
+	    <target name="init-ivy" depends="download-ivy">
+	      <!-- try to load ivy here from ivy home, in case the user has not already dropped
+	              it into ant's lib dir (note that the latter copy will always take precedence).
+	              We will not fail as long as local lib dir exists (it may be empty) and
+	              ivy is in at least one of ant's lib dir or the local lib dir. -->
+	        <path id="ivy.lib.path">
+	            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+	        </path>
+
+	        <taskdef resource="org/apache/ivy/ant/antlib.xml"
+	                 uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	    </target>
+
+	   <target name="all" description="Create all the targets for the application." 
+	                depends="clean, compile, jar, test, coverage-report, javadoc, checkstyle, pmd, cpd, spotbugs" > 
+	   </target>
+	</project>

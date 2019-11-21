@@ -1,0 +1,10 @@
+1) untar lib/cobertura/cobertura-2.1.1-bin.tar.gz
+2) copy cobertura-2.1.1.jar to lib/cobertura
+3) right click on cobertura-2.1.1.jar and Add to Build path
+         (shows up under Referenced Libraries)
+4) In a terminal window
+    cd to $HOME/workspace/Retirement/build/ant
+    $ ant test
+    $ ant coverage-report
+    Open $HOME/workspace/Retirement/logs/cobertura/html/index.html
+    

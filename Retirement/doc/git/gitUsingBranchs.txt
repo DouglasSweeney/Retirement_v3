@@ -1,0 +1,28 @@
+Making Changes: Git & Eclipse (15:08)
+    Author: DrBFraser (youtube.com)
+    
+Eclipse: Mars
+
+1) Create a local branch
+    Git Repositories view
+    Right-click on master in Local Branches
+    Create Branch
+        Enter branch name
+        Radio button for Pull strategy is None
+        Finish
+2) Make changes
+3) Commit them
+    Git Repositories view
+    Hash diff between Local master & Local branch
+    Commit the changes
+        Fill in the commit message
+4) Merge branch to Local master
+    Git Repositories view
+    Select Local master (double click on master); or select "merge to" branch
+    Right click on Local branch & select Merge
+    Verify: Hash same in Local master repo & branch
+5) Push to GitHub
+    Select Local master
+    Select Push icon
+    Finish button
+    Verify: Git Repositories view; Local master has the same hash as Remote Tracking origin/master 

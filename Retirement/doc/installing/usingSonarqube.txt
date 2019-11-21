@@ -1,0 +1,13 @@
+// To start server
+cd /opt/sonarqube-x.y/bin/linux-x86-64
+./sonar.sh console    // need to wait a few minutes
+
+// To scan a project
+copy application packages path created from "usingMaven.txt" (dir such created")
+              to ~/Retirement/src/main/java/com/mycompany/app
+              cd ~/Retirement
+mvn sonar:sonar // to analyze
+
+// to analyze project with sonarqube
+go to localhost:9000 in web browser
+username: admin password: admin
